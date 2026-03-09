@@ -1,0 +1,52 @@
+{
+  "seo": {
+    "title": "Radar Puls | Prijave policije i radara u realnom vremenu",
+    "description": "Radar Puls pomaze vozacima da brze vide prijave policije, kamera i kontrola kroz zajednicu vozaca."
+  },
+  "nav": {
+    "brand": "Radar Puls",
+    "howItWorks": "Kako radi",
+    "community": "Zajednica",
+    "download": "Preuzmi aplikaciju",
+    "language": "Jezik"
+  },
+  "hero": {
+    "badge": "Zajednica vozaca u Nisu",
+    "title": "Prijave policije i radara. Brzo, jasno i na jednom mestu.",
+    "description": "Radar Puls digitalizuje prijave sa terena i pretvara ih u korisne informacije za svakodnevnu voznju.",
+    "primaryCta": "Google Play",
+    "secondaryCta": "App Store",
+    "note": "Landing MVP je aktivan. Mapa i prijave stizu u sledecoj fazi."
+  },
+  "problem": {
+    "title": "Problem koji resavamo",
+    "point1": "Informacije se danas najcesce razmenjuju kroz nepregledne Facebook komentare.",
+    "point2": "Vozacima treba brz i jednostavan pregled gde su kontrole i kamere.",
+    "point3": "Radar Puls okuplja sve prijave na jednom mestu i priprema teren za live mapu."
+  },
+  "how": {
+    "title": "Kako Radar Puls radi",
+    "step1Title": "1. Zajednica prijavljuje",
+    "step1Desc": "Vozaci dele informacije sa terena u realnom vremenu.",
+    "step2Title": "2. Podaci se strukturiraju",
+    "step2Desc": "Prijave se organizuju po tipu: policija, kamera, kontrola, incident.",
+    "step3Title": "3. Ti dobijas pregled",
+    "step3Desc": "Jasan uvid pre nego sto krenes na put."
+  },
+  "stats": {
+    "title": "Potencijal zajednice",
+    "reports": "50k+ clanova lokalne zajednice",
+    "active": "Fokus na Nis i okolinu",
+    "latest": "MVP faza spremna za rast"
+  },
+  "download": {
+    "title": "Preuzmi Radar Puls aplikaciju",
+    "description": "Postavi aplikaciju sada i budi spreman cim live mapa postane dostupna.",
+    "play": "Preuzmi za Android",
+    "store": "Preuzmi za iOS"
+  },
+  "footer": {
+    "text": "Radar Puls - zajednica vozaca koja deli korisne informacije odgovorno.",
+    "domain": "Buduci domen: radarpuls.com"
+  }
+}

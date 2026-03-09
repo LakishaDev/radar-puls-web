@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Radar Puls Open Graph placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#091733"/>
+      <stop offset="55%" stop-color="#15356d"/>
+      <stop offset="100%" stop-color="#9d1833"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="210" cy="315" r="85" fill="none" stroke="#ff6c86" stroke-width="16" opacity="0.85"/>
+  <circle cx="210" cy="315" r="28" fill="#ff6c86"/>
+  <text x="340" y="305" font-family="Arial, sans-serif" font-size="88" font-weight="800" fill="#ffffff">RADAR PULS</text>
+  <text x="340" y="370" font-family="Arial, sans-serif" font-size="34" fill="#d6def5">Prijave policije i radara u realnom vremenu</text>
+</svg>

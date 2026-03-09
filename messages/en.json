@@ -1,0 +1,52 @@
+{
+  "seo": {
+    "title": "Radar Puls | Police and speed camera reports in real time",
+    "description": "Radar Puls helps drivers quickly see police, camera and checkpoint reports powered by the community."
+  },
+  "nav": {
+    "brand": "Radar Puls",
+    "howItWorks": "How it works",
+    "community": "Community",
+    "download": "Download app",
+    "language": "Language"
+  },
+  "hero": {
+    "badge": "Driver community in Nis",
+    "title": "Police and radar reports. Fast, clear and in one place.",
+    "description": "Radar Puls digitizes field reports and turns them into practical information for daily driving.",
+    "primaryCta": "Google Play",
+    "secondaryCta": "App Store",
+    "note": "Landing MVP is live. Map and reporting arrive in the next phase."
+  },
+  "problem": {
+    "title": "The problem we solve",
+    "point1": "Most updates are currently buried in long Facebook comment threads.",
+    "point2": "Drivers need a quick and simple view of police checks and cameras.",
+    "point3": "Radar Puls brings reports into one place and prepares the ground for a live map."
+  },
+  "how": {
+    "title": "How Radar Puls works",
+    "step1Title": "1. Community reports",
+    "step1Desc": "Drivers share updates from the road in real time.",
+    "step2Title": "2. Data gets structured",
+    "step2Desc": "Reports are organized by type: police, camera, control, incident.",
+    "step3Title": "3. You get clarity",
+    "step3Desc": "A cleaner road overview before you start driving."
+  },
+  "stats": {
+    "title": "Community potential",
+    "reports": "50k+ local community members",
+    "active": "Focused on Nis and nearby area",
+    "latest": "MVP phase ready to scale"
+  },
+  "download": {
+    "title": "Download the Radar Puls app",
+    "description": "Install now and be ready when the live map is released.",
+    "play": "Get for Android",
+    "store": "Get for iOS"
+  },
+  "footer": {
+    "text": "Radar Puls - a driver community sharing useful road information responsibly.",
+    "domain": "Future domain: radarpuls.com"
+  }
+}

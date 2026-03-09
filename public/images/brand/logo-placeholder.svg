@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="120" viewBox="0 0 420 120" role="img" aria-label="Radar Puls placeholder logo">
+  <defs>
+    <linearGradient id="rp" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d2d66"/>
+      <stop offset="100%" stop-color="#d31f3c"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="120" rx="16" fill="#edf2ff"/>
+  <circle cx="52" cy="60" r="22" fill="none" stroke="url(#rp)" stroke-width="8"/>
+  <circle cx="52" cy="60" r="7" fill="#d31f3c"/>
+  <text x="90" y="71" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#0b1c3d">RADAR PULS</text>
+</svg>
