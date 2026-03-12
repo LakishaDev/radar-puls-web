@@ -176,7 +176,7 @@ function parseLegalHub(markdown: string): LegalHubContent {
 }
 
 function extractIcon(block: string): LegalHubCard["icon"] | null {
-  const match = block.match(/-\s+\*\*[^*]*\*\*:\s*([A-Za-z]+)/);
+  const match = block.match(/-\s+\*\*[^*]+:\*\*\s+([A-Za-z]+)/);
   if (!match) {
     return null;
   }
@@ -205,5 +205,5 @@ function extractDescription(block: string): string | null {
     return null;
   }
 
-  return descriptionLine.replace(/^-\s+\*\*[^*]*\*\*:\s*/, "").trim();
+  return descriptionLine.replace(/^-\s+\*\*[^*]+:\*\*\s*/, "").trim();
 }
