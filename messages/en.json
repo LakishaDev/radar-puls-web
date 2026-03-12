@@ -45,8 +45,94 @@
     "play": "Get for Android",
     "store": "Get for iOS"
   },
+  "countdown": {
+    "title": "Live map launch countdown",
+    "description": "Real-time map is approaching. Be among the first users when it goes live.",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
+  },
+  "testimonials": {
+    "title": "What drivers say",
+    "item1": {
+      "quote": "Finally one clear place instead of endless comment threads.",
+      "initials": "MN",
+      "name": "Milan Nikolic",
+      "location": "Nis"
+    },
+    "item2": {
+      "quote": "The map preview already gives me confidence before commuting.",
+      "initials": "AJ",
+      "name": "Ana Jovanovic",
+      "location": "Pantelej"
+    },
+    "item3": {
+      "quote": "Simple interface, fast checks, and useful community updates.",
+      "initials": "DK",
+      "name": "Dejan Kostic",
+      "location": "Medijana"
+    }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "q1": {
+      "question": "Is Radar Puls free?",
+      "answer": "Yes, the core app experience is planned as free for all drivers."
+    },
+    "q2": {
+      "question": "How do I report police or radar?",
+      "answer": "You open the app, choose report type and location, then submit in a few taps."
+    },
+    "q3": {
+      "question": "Which cities are covered?",
+      "answer": "MVP starts with Nis and nearby area, then expands city by city."
+    },
+    "q4": {
+      "question": "Is this legal to use?",
+      "answer": "Radar Puls is an informational community platform. Users must follow local traffic laws."
+    },
+    "q5": {
+      "question": "How does trust and accuracy work?",
+      "answer": "Reports are validated through community confirmations and future reputation scoring."
+    },
+    "q6": {
+      "question": "When is live map launching?",
+      "answer": "A countdown is shown on this page and launch updates will be announced there."
+    }
+  },
+  "newsletter": {
+    "title": "Get notified on launch",
+    "description": "Leave your email and we will notify you when live map is available.",
+    "placeholder": "Enter your email",
+    "cta": "Notify me",
+    "success": "Thanks. You are on the launch list."
+  },
+  "cookie": {
+    "text": "We use cookies to improve experience and basic analytics on Radar Puls.",
+    "accept": "Accept",
+    "learnMore": "Learn more"
+  },
   "footer": {
     "text": "Radar Puls - a driver community sharing useful road information responsibly.",
-    "domain": "Future domain: radarpuls.com"
+    "domain": "Future domain: radarpuls.com",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal",
+    "rights": "All rights reserved.",
+    "links": {
+      "how": "How it works",
+      "map": "Map",
+      "download": "Download",
+      "about": "About",
+      "contact": "Contact",
+      "community": "Community",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "disclaimer": "Disclaimer",
+      "cookies": "Cookie Policy",
+      "communityGuidelines": "Community Guidelines",
+      "legal": "Legal"
+    }
   }
 }

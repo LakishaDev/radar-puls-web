@@ -1,5 +1,7 @@
 import type {Metadata} from "next";
 import {Sora, Space_Mono} from "next/font/google";
+import {appConfig} from "@/lib/config";
+import {ThemeProvider} from "@/components/theme-provider";
 import "./globals.css";
 
 const sora = Sora({
@@ -14,12 +16,13 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://radarpuls.com"),
+  metadataBase: new URL(appConfig.siteUrl),
   title: {
     default: "Radar Puls",
     template: "%s | Radar Puls",
   },
   description: "Radar Puls landing iskustvo za zajednicu vozaca.",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -29,8 +32,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sr-Latn-RS" suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var t=localStorage.getItem('rp-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();",
+          }}
+        />
+      </head>
       <body className={`${sora.variable} ${spaceMono.variable} antialiased`}>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

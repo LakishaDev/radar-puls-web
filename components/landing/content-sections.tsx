@@ -2,27 +2,28 @@
 
 import {useTranslations} from "next-intl";
 import {ShieldCheck, RadioTower, Users} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import {trackEvent} from "@/lib/analytics";
+import {Reveal, StaggerContainer, StaggerItem} from "@/components/motion/reveal";
 
-const googlePlayUrl =
-  process.env.NEXT_PUBLIC_GOOGLE_PLAY_URL ?? "https://play.google.com/store";
-const appStoreUrl =
-  process.env.NEXT_PUBLIC_APP_STORE_URL ?? "https://apps.apple.com";
+const topReporters = [
+  {name: "NiskiVozac", reports: 124, accuracy: "97%"},
+  {name: "MedijanaAlert", reports: 103, accuracy: "95%"},
+  {name: "BulevarScout", reports: 88, accuracy: "94%"},
+  {name: "PalilulaDrive", reports: 72, accuracy: "92%"},
+];
 
 export function ContentSections() {
   const problem = useTranslations("problem");
   const how = useTranslations("how");
   const stats = useTranslations("stats");
-  const download = useTranslations("download");
 
   return (
     <>
-      {/* Info grid */}
-      <section className="mx-auto mt-8 grid w-full max-w-6xl gap-4 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
+      <Reveal>
+        <StaggerContainer className="mx-auto mt-8 grid w-full max-w-6xl gap-4 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
 
         {/* Problem card */}
-        <article className="group rounded-xl border border-[var(--rp-border)] bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+        <StaggerItem>
+          <article className="group rounded-xl border border-[var(--rp-border)] bg-[var(--rp-card)] p-6 shadow-sm transition-shadow hover:shadow-md">
           <div className="mb-4 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 text-[var(--rp-danger)]">
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z" />
@@ -44,9 +45,11 @@ export function ContentSections() {
             </li>
           </ul>
         </article>
+        </StaggerItem>
 
         {/* How it works card */}
-        <article id="kako-radi" className="group rounded-xl border border-[var(--rp-border)] bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+        <StaggerItem>
+          <article id="kako-radi" className="group rounded-xl border border-[var(--rp-border)] bg-[var(--rp-card)] p-6 shadow-sm transition-shadow hover:shadow-md">
           <div className="mb-4 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-[var(--rp-primary)]">
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
@@ -77,9 +80,11 @@ export function ContentSections() {
             </li>
           </ol>
         </article>
+        </StaggerItem>
 
         {/* Stats card */}
-        <article id="zajednica" className="group rounded-xl border border-[var(--rp-border)] bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+        <StaggerItem>
+          <article id="zajednica" className="group rounded-xl border border-[var(--rp-border)] bg-[var(--rp-card)] p-6 shadow-sm transition-shadow hover:shadow-md">
           <div className="mb-4 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-[var(--rp-primary)]">
             <Users className="h-4 w-4" />
           </div>
@@ -105,43 +110,47 @@ export function ContentSections() {
             </div>
           </div>
         </article>
-      </section>
+        </StaggerItem>
+        </StaggerContainer>
+      </Reveal>
 
-      {/* Download CTA */}
-      <section id="preuzmi" className="mx-auto mt-8 w-full max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-br from-[var(--rp-surface)] to-white p-8 shadow-sm sm:p-10">
-          {/* Subtle decoration */}
-          <div
-            className="pointer-events-none absolute right-0 top-0 h-48 w-48 opacity-30"
-            style={{background: "radial-gradient(circle at top right, #BFDBFE, transparent 70%)"}}
-          />
-          <div className="relative">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-500">Beta</p>
-            <h2 className="text-2xl font-semibold text-[var(--rp-deep)]">{download("title")}</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--rp-ink-soft)]">{download("description")}</p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a href={googlePlayUrl} target="_blank" rel="noreferrer">
-                <Button
-                  size="lg"
-                  onClick={() => trackEvent("cta_download_click", {store: "google_play", section: "bottom"})}
-                >
-                  {download("play")}
-                </Button>
-              </a>
-              <a href={appStoreUrl} target="_blank" rel="noreferrer">
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="border border-[var(--rp-border)]"
-                  onClick={() => trackEvent("cta_download_click", {store: "app_store", section: "bottom"})}
-                >
-                  {download("store")}
-                </Button>
-              </a>
+      {/* Community leaderboard (placeholder) */}
+      <Reveal>
+        <section className="mx-auto mt-8 w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-[var(--rp-border)] bg-[var(--rp-card)] p-6 shadow-sm sm:p-8">
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-blue-500">Community</p>
+              <h3 className="mt-1 text-xl font-semibold text-[var(--rp-deep)]">Top reporteri ove nedelje</h3>
             </div>
+            <span className="rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-blue-700">
+              Placeholder
+            </span>
           </div>
-        </div>
-      </section>
+
+          <StaggerContainer className="grid gap-3 sm:grid-cols-2">
+            {topReporters.map((reporter, index) => (
+              <StaggerItem key={reporter.name}>
+                <article
+                  className="flex items-center justify-between rounded-xl border border-[var(--rp-border)] bg-[var(--rp-surface)] px-4 py-3"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--rp-primary)] text-xs font-bold text-white">
+                      {index + 1}
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold text-[var(--rp-ink)]">{reporter.name}</p>
+                      <p className="text-xs text-[var(--rp-ink-soft)]">{reporter.reports} potvrdenih prijava</p>
+                    </div>
+                  </div>
+                  <p className="text-xs font-semibold text-emerald-600">Tacnost {reporter.accuracy}</p>
+                </article>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+          </div>
+        </section>
+      </Reveal>
     </>
   );
 }

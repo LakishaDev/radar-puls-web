@@ -1,0 +1,19 @@
+{
+  "name": "Radar Puls",
+  "short_name": "RadarPuls",
+  "description": "Prijave policije, radara i kontrola za vozace u Nisu i okolini.",
+  "start_url": "/sr-latn",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0A1628",
+  "theme_color": "#0B3B8C",
+  "lang": "sr",
+  "icons": [
+    {
+      "src": "/images/brand/og-placeholder.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import {MapPin} from "lucide-react";
+import {Reveal} from "@/components/motion/reveal";
 
 const MapClient = dynamic(() => import("./map-client"), {
   ssr: false,
@@ -17,7 +18,8 @@ const MapClient = dynamic(() => import("./map-client"), {
 
 export function MapSection() {
   return (
-    <section id="mapa" className="mx-auto w-full max-w-6xl px-4 pb-8 sm:px-6 lg:px-8">
+    <Reveal>
+      <section id="mapa" className="mx-auto w-full max-w-6xl px-4 pb-8 sm:px-6 lg:px-8">
       {/* Section header */}
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -41,6 +43,7 @@ export function MapSection() {
       <p className="mt-3 text-[11px] text-[var(--rp-ink-soft)]">
         * Prikazani izveštaji su demo podaci. Prava mapa će biti dostupna uz aplikaciju.
       </p>
-    </section>
+      </section>
+    </Reveal>
   );
 }

@@ -31,3 +31,9 @@ export const futureSeoPages: FutureSeoPage[] = [
     description: "Community prijave saobracajnih kontrola i patrola u tvom gradu.",
   },
 ];
+
+export const futureSeoPageSlugs = futureSeoPages.map((page) => page.slug);
+
+export function getFutureSeoPageBySlug(slug: string) {
+  return futureSeoPages.find((page) => page.slug === slug);
+}

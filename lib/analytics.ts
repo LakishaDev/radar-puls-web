@@ -1,7 +1,8 @@
 export type AnalyticsEvent =
   | "cta_download_click"
   | "locale_switch"
-  | "hero_view";
+  | "hero_view"
+  | "hero_variant_assigned";
 
 declare global {
   interface Window {

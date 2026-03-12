@@ -45,8 +45,94 @@
     "play": "Preuzmi za Android",
     "store": "Preuzmi za iOS"
   },
+  "countdown": {
+    "title": "Odbrojavanje do live mape",
+    "description": "Real-time mapa stize uskoro. Budi medu prvima kada postane dostupna.",
+    "days": "Dana",
+    "hours": "Sati",
+    "minutes": "Minuta",
+    "seconds": "Sekundi"
+  },
+  "testimonials": {
+    "title": "Sta kazu vozaci",
+    "item1": {
+      "quote": "Konacno jedno jasno mesto umesto beskrajnih komentara.",
+      "initials": "MN",
+      "name": "Milan Nikolic",
+      "location": "Nis"
+    },
+    "item2": {
+      "quote": "Vec i ovaj preview mape mi daje sigurnost pre voznje.",
+      "initials": "AJ",
+      "name": "Ana Jovanovic",
+      "location": "Pantelej"
+    },
+    "item3": {
+      "quote": "Jednostavno, brzo i korisno kad proveravam rutu.",
+      "initials": "DK",
+      "name": "Dejan Kostic",
+      "location": "Medijana"
+    }
+  },
+  "faq": {
+    "title": "Cesto postavljana pitanja",
+    "q1": {
+      "question": "Da li je Radar Puls besplatan?",
+      "answer": "Da, osnovne funkcije aplikacije su planirane kao besplatne za sve vozace."
+    },
+    "q2": {
+      "question": "Kako prijavljujem policiju ili radar?",
+      "answer": "U aplikaciji izaberes tip prijave i lokaciju, a zatim posaljes u par klikova."
+    },
+    "q3": {
+      "question": "Koje gradove pokrivate?",
+      "answer": "MVP krece iz Nisa i okoline, a zatim se siri na druge gradove."
+    },
+    "q4": {
+      "question": "Da li je koriscenje legalno?",
+      "answer": "Radar Puls je informativna platforma zajednice i korisnici su duzni da postuju zakon."
+    },
+    "q5": {
+      "question": "Kako obezbedujete tacnost prijava?",
+      "answer": "Prijave se potvrduju kroz reakcije zajednice i buduci reputacioni sistem."
+    },
+    "q6": {
+      "question": "Kada izlazi live mapa?",
+      "answer": "Na ovoj stranici je odbrojavanje, a sve informacije o launch-u bice objavljene ovde."
+    }
+  },
+  "newsletter": {
+    "title": "Obavesti me kada krene",
+    "description": "Ostavi email i javicemo ti cim live mapa postane dostupna.",
+    "placeholder": "Unesi email adresu",
+    "cta": "Obavesti me",
+    "success": "Hvala. Na listi si za launch obavestenje."
+  },
+  "cookie": {
+    "text": "Koristimo kolacice za bolje korisnicko iskustvo i osnovnu analitiku na Radar Puls sajtu.",
+    "accept": "Prihvati",
+    "learnMore": "Saznaj vise"
+  },
   "footer": {
     "text": "Radar Puls - zajednica vozaca koja deli korisne informacije odgovorno.",
-    "domain": "Buduci domen: radarpuls.com"
+    "domain": "Buduci domen: radarpuls.com",
+    "product": "Proizvod",
+    "company": "Kompanija",
+    "legal": "Pravno",
+    "rights": "Sva prava zadrzana.",
+    "links": {
+      "how": "Kako radi",
+      "map": "Mapa",
+      "download": "Preuzmi",
+      "about": "O nama",
+      "contact": "Kontakt",
+      "community": "Zajednica",
+      "privacy": "Politika privatnosti",
+      "terms": "Uslovi koriscenja",
+      "disclaimer": "Odricanje odgovornosti",
+      "cookies": "Politika kolacica",
+      "communityGuidelines": "Pravila zajednice",
+      "legal": "Pravne informacije"
+    }
   }
 }

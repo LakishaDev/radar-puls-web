@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "lat": 43.3209,
+    "lng": 21.8954,
+    "type": "police",
+    "label": "Policija",
+    "location": "Centar, Obrenoviceva ul.",
+    "time": "pre 5 min",
+    "votes": 12
+  },
+  {
+    "id": 2,
+    "lat": 43.315,
+    "lng": 21.908,
+    "type": "radar",
+    "label": "Radar",
+    "location": "Bulevar Nemanjica bb",
+    "time": "pre 12 min",
+    "votes": 8
+  },
+  {
+    "id": 3,
+    "lat": 43.329,
+    "lng": 21.9165,
+    "type": "checkpoint",
+    "label": "Kontrola",
+    "location": "Medijana, Vojvode Tankosica",
+    "time": "pre 3 min",
+    "votes": 21
+  },
+  {
+    "id": 4,
+    "lat": 43.306,
+    "lng": 21.889,
+    "type": "police",
+    "label": "Policija",
+    "location": "Bubanj, Brace Taskovic",
+    "time": "pre 18 min",
+    "votes": 5
+  },
+  {
+    "id": 5,
+    "lat": 43.336,
+    "lng": 21.9046,
+    "type": "radar",
+    "label": "Radar",
+    "location": "Palilula, prema autoputu",
+    "time": "pre 7 min",
+    "votes": 15
+  },
+  {
+    "id": 6,
+    "lat": 43.318,
+    "lng": 21.881,
+    "type": "checkpoint",
+    "label": "Kontrola",
+    "location": "Trosarina, izlaz ka Beogradu",
+    "time": "pre 25 min",
+    "votes": 9
+  },
+  {
+    "id": 7,
+    "lat": 43.324,
+    "lng": 21.901,
+    "type": "police",
+    "label": "Policija",
+    "location": "Dusanova ul., Jagodin Mala",
+    "time": "pre 2 min",
+    "votes": 17
+  }
+]

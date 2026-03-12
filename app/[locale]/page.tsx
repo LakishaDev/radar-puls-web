@@ -1,7 +1,12 @@
 import {SiteNavbar} from "@/components/landing/site-navbar";
 import {HeroSection} from "@/components/landing/hero-section";
 import {ContentSections} from "@/components/landing/content-sections";
+import {CountdownSection} from "@/components/landing/countdown-section";
+import {TestimonialsSection} from "@/components/landing/testimonials-section";
 import {MapSection} from "@/components/landing/map-section";
+import {NewsletterSection} from "@/components/landing/newsletter-section";
+import {FaqSection} from "@/components/landing/faq-section";
+import {DownloadCtaSection} from "@/components/landing/download-cta-section";
 import {SiteFooter} from "@/components/landing/site-footer";
 
 export default function LandingPage() {
@@ -10,7 +15,12 @@ export default function LandingPage() {
       <SiteNavbar />
       <HeroSection />
       <ContentSections />
+      <CountdownSection />
+      <TestimonialsSection />
       <MapSection />
+      <NewsletterSection />
+      <FaqSection />
+      <DownloadCtaSection />
       <SiteFooter />
     </main>
   );
