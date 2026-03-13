@@ -134,5 +134,131 @@
       "communityGuidelines": "Pravila zajednice",
       "legal": "Pravne informacije"
     }
+  },
+  "mapPage": {
+    "title": "Live mapa",
+    "description": "Radar Puls live mapa sa prijavama zajednice za Nis i okolinu.",
+    "subtitle": "Feed prijava sa automatskim osvezavanjem, filterima tipa i vremenskim opsegom."
+  },
+  "map": {
+    "loading": "Ucitavanje live mape...",
+    "lastUpdated": "Poslednje osvezavanje: pre {value}",
+    "waitingFirstRefresh": "Ceka se prvo osvezavanje...",
+    "ago": "pre {value}",
+    "errors": {
+      "fallbackData": "API trenutno nije dostupan. Prikazani su demo podaci."
+    },
+    "mode": {
+      "live": "Live API",
+      "fallback": "Demo fallback"
+    },
+    "types": {
+      "police": "Policija",
+      "radar": "Radar",
+      "checkpoint": "Kontrola",
+      "accident": "Udes",
+      "trafficJam": "Guzva",
+      "unknown": "Ostalo"
+    },
+    "filters": {
+      "time": {
+        "1h": "1h",
+        "6h": "6h",
+        "12h": "12h",
+        "24h": "24h"
+      }
+    },
+    "feed": {
+      "title": "Live izvestaji",
+      "activeCount": "{count} aktivnih",
+      "empty": "Nema prijava za izabrane filtere.",
+      "noDescription": "Bez opisa"
+    },
+    "confidence": {
+      "none": "Bez confidence",
+      "value": "Confidence {value}%",
+      "short": "{value}%"
+    },
+    "geolocation": {
+      "cta": "Pronadji me",
+      "locating": "Lociram...",
+      "failed": "Nije moguce odrediti tvoju lokaciju.",
+      "unsupported": "Geolokacija nije podrzana u ovom browser-u.",
+      "you": "Tvoja lokacija"
+    },
+    "disclaimer": "Prikaz je informativan i zavisi od dostupnosti podataka sa API-ja."
+  },
+  "admin": {
+    "common": {
+      "checkingSession": "Provera admin sesije...",
+      "ago": "pre {value}"
+    },
+    "errors": {
+      "failedToLoad": "Neuspesno ucitavanje podataka sa admin API-ja.",
+      "actionFailed": "Akcija nije uspela. Pokusaj ponovo."
+    },
+    "header": {
+      "title": "Moderation Console",
+      "logout": "Odjavi se"
+    },
+    "sidebar": {
+      "title": "Radar Puls Admin",
+      "dashboard": "Dashboard",
+      "events": "Events"
+    },
+    "login": {
+      "title": "Admin prijava",
+      "subtitle": "Unesi admin token da otvoris moderation panel.",
+      "tokenLabel": "Admin token",
+      "placeholder": "Unesi ADMIN_API_TOKEN",
+      "submit": "Prijavi se",
+      "validation": {
+        "tokenMin": "Token mora imati minimum 8 karaktera."
+      }
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Live pregled moderacije i stanja pipeline-a.",
+      "recentEvents": "Skoriji eventi",
+      "openList": "Otvori listu",
+      "cards": {
+        "totalEvents": "Ukupno eventa",
+        "pendingReview": "Ceka review",
+        "approved": "Odobreno",
+        "rejected": "Odbijeno"
+      }
+    },
+    "events": {
+      "title": "Events",
+      "subtitle": "Live moderation lista iz /api/admin/events.",
+      "empty": "Nema eventa.",
+      "columns": {
+        "type": "Tip",
+        "location": "Lokacija",
+        "status": "Status",
+        "parse": "Parse",
+        "time": "Vreme"
+      }
+    },
+    "eventDetail": {
+      "label": "Detalj eventa",
+      "back": "Nazad na listu",
+      "rawMessage": "Raw poruka",
+      "emptyMessage": "Nema raw poruke",
+      "parsedData": "Parsed podaci",
+      "fields": {
+        "type": "Tip",
+        "location": "Lokacija",
+        "confidence": "Confidence",
+        "status": "Moderation status"
+      },
+      "actions": {
+        "title": "Moderation akcije",
+        "approve": "Odobri",
+        "reject": "Odbij",
+        "rejectNote": "Napomena za odbijanje",
+        "rejectPlaceholder": "Opciona napomena vidljiva u moderation log-u"
+      }
+    }
   }
 }

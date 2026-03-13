@@ -134,5 +134,131 @@
       "communityGuidelines": "Правила заједнице",
       "legal": "Правне информације"
     }
+  },
+  "mapPage": {
+    "title": "Live мапа",
+    "description": "Радар Пулс live мапа са пријавама заједнице за Ниш и околину.",
+    "subtitle": "Feed пријава са аутоматским освежавањем, филтерима типа и временским опсегом."
+  },
+  "map": {
+    "loading": "Учитавање live мапе...",
+    "lastUpdated": "Последње освежавање: пре {value}",
+    "waitingFirstRefresh": "Чека се прво освежавање...",
+    "ago": "пре {value}",
+    "errors": {
+      "fallbackData": "API тренутно није доступан. Приказани су demo подаци."
+    },
+    "mode": {
+      "live": "Live API",
+      "fallback": "Demo fallback"
+    },
+    "types": {
+      "police": "Полиција",
+      "radar": "Радар",
+      "checkpoint": "Контрола",
+      "accident": "Удес",
+      "trafficJam": "Гужва",
+      "unknown": "Остало"
+    },
+    "filters": {
+      "time": {
+        "1h": "1h",
+        "6h": "6h",
+        "12h": "12h",
+        "24h": "24h"
+      }
+    },
+    "feed": {
+      "title": "Live извештаји",
+      "activeCount": "{count} активних",
+      "empty": "Нема пријава за изабране филтере.",
+      "noDescription": "Без описа"
+    },
+    "confidence": {
+      "none": "Без confidence",
+      "value": "Confidence {value}%",
+      "short": "{value}%"
+    },
+    "geolocation": {
+      "cta": "Пронађи ме",
+      "locating": "Лоцирам...",
+      "failed": "Није могуће одредити твоју локацију.",
+      "unsupported": "Геолокација није подржана у овом browser-у.",
+      "you": "Твоја локација"
+    },
+    "disclaimer": "Приказ је информативан и зависи од доступности података са API-ја."
+  },
+  "admin": {
+    "common": {
+      "checkingSession": "Провера admin сесије...",
+      "ago": "пре {value}"
+    },
+    "errors": {
+      "failedToLoad": "Неуспешно учитавање података са admin API-ја.",
+      "actionFailed": "Акција није успела. Покушај поново."
+    },
+    "header": {
+      "title": "Moderation Console",
+      "logout": "Одјави се"
+    },
+    "sidebar": {
+      "title": "Радар Пулс Админ",
+      "dashboard": "Контролна табла",
+      "events": "Догађаји"
+    },
+    "login": {
+      "title": "Admin пријава",
+      "subtitle": "Унеси admin token да отвориш moderation panel.",
+      "tokenLabel": "Admin token",
+      "placeholder": "Унеси ADMIN_API_TOKEN",
+      "submit": "Пријави се",
+      "validation": {
+        "tokenMin": "Token мора имати минимум 8 карактера."
+      }
+    },
+    "dashboard": {
+      "title": "Контролна табла",
+      "subtitle": "Live преглед модерације и стања pipeline-а.",
+      "recentEvents": "Скорашњи догађаји",
+      "openList": "Отвори листу",
+      "cards": {
+        "totalEvents": "Укупно догађаја",
+        "pendingReview": "Чека review",
+        "approved": "Одобрено",
+        "rejected": "Одбијено"
+      }
+    },
+    "events": {
+      "title": "Догађаји",
+      "subtitle": "Live moderation листа из /api/admin/events.",
+      "empty": "Нема догађаја.",
+      "columns": {
+        "type": "Тип",
+        "location": "Локација",
+        "status": "Статус",
+        "parse": "Parse",
+        "time": "Време"
+      }
+    },
+    "eventDetail": {
+      "label": "Детаљ догађаја",
+      "back": "Назад на листу",
+      "rawMessage": "Raw порука",
+      "emptyMessage": "Нема raw поруке",
+      "parsedData": "Parsed подаци",
+      "fields": {
+        "type": "Тип",
+        "location": "Локација",
+        "confidence": "Confidence",
+        "status": "Moderation status"
+      },
+      "actions": {
+        "title": "Moderation акције",
+        "approve": "Одобри",
+        "reject": "Одбиј",
+        "rejectNote": "Напомена за одбијање",
+        "rejectPlaceholder": "Опциона напомена видљива у moderation лог-у"
+      }
+    }
   }
 }

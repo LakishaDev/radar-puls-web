@@ -30,9 +30,9 @@ export function SiteNavbar() {
           <a href="#zajednica" className="hover:text-white transition-colors">
             {t("community")}
           </a>
-          <a href="#mapa" className="hover:text-white transition-colors">
+          <Link href="/mapa" className="hover:text-white transition-colors">
             Mapa
-          </a>
+          </Link>
           <a
             href="#preuzmi"
             className="rounded-md bg-blue-600 px-3.5 py-1.5 text-white hover:bg-blue-500 transition-colors"
@@ -81,13 +81,13 @@ export function SiteNavbar() {
               >
                 {t("community")}
               </a>
-              <a
-                href="#mapa"
+              <Link
+                href="/mapa"
                 className="rounded-md px-3 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white"
                 onClick={closeMenu}
               >
                 Mapa
-              </a>
+              </Link>
               <a
                 href="#preuzmi"
                 className="mt-1 rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-500"

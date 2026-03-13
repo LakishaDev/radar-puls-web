@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import {MapPin} from "lucide-react";
 import {Reveal} from "@/components/motion/reveal";
+import {Link} from "@/i18n/navigation";
 
 const MapClient = dynamic(() => import("./map-client"), {
   ssr: false,
@@ -27,9 +28,12 @@ export function MapSection() {
             <MapPin className="h-4 w-4 text-[var(--rp-primary)]" />
             <h2 className="text-lg font-semibold text-[var(--rp-deep)]">Live Mapa – Niš</h2>
           </div>
-          <span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-amber-700">
-            Preview
-          </span>
+          <Link
+            href="/mapa"
+            className="rounded-full border border-[var(--rp-border)] bg-[var(--rp-card)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-[var(--rp-primary)] hover:bg-[var(--rp-surface)]"
+          >
+            Otvori full mapu
+          </Link>
         </div>
         <p className="hidden text-xs text-[var(--rp-ink-soft)] sm:block">
           Klikni na marker za detalje
@@ -40,9 +44,7 @@ export function MapSection() {
       <MapClient />
 
       {/* Disclaimer */}
-      <p className="mt-3 text-[11px] text-[var(--rp-ink-soft)]">
-        * Prikazani izveštaji su demo podaci. Prava mapa će biti dostupna uz aplikaciju.
-      </p>
+      <p className="mt-3 text-[11px] text-[var(--rp-ink-soft)]">* Mapa automatski prelazi na demo prikaz ako API nije dostupan.</p>
       </section>
     </Reveal>
   );

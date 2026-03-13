@@ -23,6 +23,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
+  const mapaPages = routing.locales.map((locale) => ({
+    url: `${appConfig.siteUrl}/${locale}/mapa`,
+    lastModified: now,
+    changeFrequency: "hourly" as const,
+    priority: 0.8,
+  }));
+
   const seoPages = routing.locales.flatMap((locale) =>
     futureSeoPages.map((page) => ({
       url: `${appConfig.siteUrl}/${locale}/${page.slug}`,
@@ -32,5 +39,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  return [...localePages, ...legalPages, ...seoPages];
+  return [...localePages, ...mapaPages, ...legalPages, ...seoPages];
 }

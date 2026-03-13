@@ -48,7 +48,7 @@ export function SiteFooter() {
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--rp-ink-soft)]">{t("product")}</p>
           <ul className="mt-3 space-y-2 text-sm text-[var(--rp-ink)]">
             <li><a className="hover:text-[var(--rp-primary)]" href="#kako-radi">{t("links.how")}</a></li>
-            <li><a className="hover:text-[var(--rp-primary)]" href="#mapa">{t("links.map")}</a></li>
+            <li><Link className="hover:text-[var(--rp-primary)]" href="/mapa">{t("links.map")}</Link></li>
             <li><a className="hover:text-[var(--rp-primary)]" href="#preuzmi">{t("links.download")}</a></li>
           </ul>
         </div>

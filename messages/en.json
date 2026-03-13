@@ -134,5 +134,131 @@
       "communityGuidelines": "Community Guidelines",
       "legal": "Legal"
     }
+  },
+  "mapPage": {
+    "title": "Live Map",
+    "description": "Radar Puls live map with community reports for Nis and nearby area.",
+    "subtitle": "Reports feed with auto-refresh, type filters and time windows."
+  },
+  "map": {
+    "loading": "Loading live map...",
+    "lastUpdated": "Last refresh: {value} ago",
+    "waitingFirstRefresh": "Waiting for first refresh...",
+    "ago": "{value} ago",
+    "errors": {
+      "fallbackData": "API is currently unavailable. Showing demo data."
+    },
+    "mode": {
+      "live": "Live API",
+      "fallback": "Demo fallback"
+    },
+    "types": {
+      "police": "Police",
+      "radar": "Radar",
+      "checkpoint": "Checkpoint",
+      "accident": "Accident",
+      "trafficJam": "Traffic jam",
+      "unknown": "Other"
+    },
+    "filters": {
+      "time": {
+        "1h": "1h",
+        "6h": "6h",
+        "12h": "12h",
+        "24h": "24h"
+      }
+    },
+    "feed": {
+      "title": "Live reports",
+      "activeCount": "{count} active",
+      "empty": "No reports for selected filters.",
+      "noDescription": "No description"
+    },
+    "confidence": {
+      "none": "No confidence",
+      "value": "Confidence {value}%",
+      "short": "{value}%"
+    },
+    "geolocation": {
+      "cta": "Locate me",
+      "locating": "Locating...",
+      "failed": "Unable to get your location.",
+      "unsupported": "Geolocation is not supported by this browser.",
+      "you": "You are here"
+    },
+    "disclaimer": "Map is informational and depends on API data availability."
+  },
+  "admin": {
+    "common": {
+      "checkingSession": "Checking admin session...",
+      "ago": "{value} ago"
+    },
+    "errors": {
+      "failedToLoad": "Unable to load data from admin API.",
+      "actionFailed": "Action failed. Please try again."
+    },
+    "header": {
+      "title": "Moderation Console",
+      "logout": "Logout"
+    },
+    "sidebar": {
+      "title": "Radar Puls Admin",
+      "dashboard": "Dashboard",
+      "events": "Events"
+    },
+    "login": {
+      "title": "Admin login",
+      "subtitle": "Enter admin token to open the moderation panel.",
+      "tokenLabel": "Admin token",
+      "placeholder": "Enter ADMIN_API_TOKEN",
+      "submit": "Sign in",
+      "validation": {
+        "tokenMin": "Token must be at least 8 characters long."
+      }
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Live moderation overview and pipeline status.",
+      "recentEvents": "Recent events",
+      "openList": "Open list",
+      "cards": {
+        "totalEvents": "Total events",
+        "pendingReview": "Pending review",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      }
+    },
+    "events": {
+      "title": "Events",
+      "subtitle": "Live moderation list from /api/admin/events.",
+      "empty": "No events found.",
+      "columns": {
+        "type": "Type",
+        "location": "Location",
+        "status": "Status",
+        "parse": "Parse",
+        "time": "Time"
+      }
+    },
+    "eventDetail": {
+      "label": "Event detail",
+      "back": "Back to list",
+      "rawMessage": "Raw message",
+      "emptyMessage": "No raw message",
+      "parsedData": "Parsed data",
+      "fields": {
+        "type": "Type",
+        "location": "Location",
+        "confidence": "Confidence",
+        "status": "Moderation status"
+      },
+      "actions": {
+        "title": "Moderation actions",
+        "approve": "Approve",
+        "reject": "Reject",
+        "rejectNote": "Reject note",
+        "rejectPlaceholder": "Optional note visible in moderation logs"
+      }
+    }
   }
 }
