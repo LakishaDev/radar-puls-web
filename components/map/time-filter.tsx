@@ -1,6 +1,7 @@
 "use client";
 
 import {cn} from "@/lib/utils";
+import {Clock3} from "lucide-react";
 
 export type TimeWindow = "1h" | "6h" | "12h" | "24h";
 
@@ -32,6 +33,7 @@ export function TimeFilter({selected, labels, onChange}: TimeFilterProps) {
               : "bg-[var(--rp-card)] text-[var(--rp-ink-soft)] hover:bg-[var(--rp-surface)]"
           )}
         >
+          <Clock3 size={12} className="mr-1 inline" />
           {labels?.[option.value] ?? option.label}
         </button>
       ))}

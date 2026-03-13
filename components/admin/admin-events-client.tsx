@@ -67,6 +67,7 @@ export function AdminEventsClient() {
                 <th className="px-4 py-3">ID</th>
                 <th className="px-4 py-3">{t("events.columns.type")}</th>
                 <th className="px-4 py-3">{t("events.columns.location")}</th>
+                <th className="px-4 py-3">{t("events.columns.rawMessage")}</th>
                 <th className="px-4 py-3">{t("events.columns.status")}</th>
                 <th className="px-4 py-3">{t("events.columns.parse")}</th>
                 <th className="px-4 py-3">{t("events.columns.time")}</th>
@@ -82,6 +83,13 @@ export function AdminEventsClient() {
                   </td>
                   <td className="px-4 py-3">{row.eventType}</td>
                   <td className="px-4 py-3">{row.locationText}</td>
+                  <td className="max-w-[280px] px-4 py-3 text-xs italic text-slate-300">
+                    <span className="block truncate" title={row.rawMessage ?? "-"}>
+                      {row.rawMessage
+                        ? (row.rawMessage.length > 60 ? `${row.rawMessage.slice(0, 60)}...` : row.rawMessage)
+                        : "-"}
+                    </span>
+                  </td>
                   <td className="px-4 py-3">{row.moderationStatus}</td>
                   <td className="px-4 py-3">{row.parseStatus}</td>
                   <td className="px-4 py-3 text-slate-400">{formatDateTime(row.createdAt)}</td>
@@ -89,7 +97,7 @@ export function AdminEventsClient() {
               ))}
               {tableRows.length === 0 ? (
                 <tr>
-                  <td className="px-4 py-4 text-xs text-slate-500" colSpan={6}>{t("events.empty")}</td>
+                  <td className="px-4 py-4 text-xs text-slate-500" colSpan={7}>{t("events.empty")}</td>
                 </tr>
               ) : null}
             </tbody>

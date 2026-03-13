@@ -19,6 +19,9 @@ export interface MapReport {
   confidence: number | null;
   createdAt: string;
   description: string | null;
+  upvotes: number;
+  downvotes: number;
+  expiresAt: string | null;
 }
 
 export interface FetchMapReportsParams {
@@ -26,6 +29,24 @@ export interface FetchMapReportsParams {
   eventType?: MapEventType;
   geoOnly?: boolean;
   signal?: AbortSignal;
+}
+
+export interface SubmitMapReportPayload {
+  eventType: MapEventType;
+  locationText: string;
+  lat?: number;
+  lng?: number;
+  description?: string;
+}
+
+export interface PublicStats {
+  total_reports_today: number;
+  total_reports_week: number;
+  busiest_area: string;
+  most_common_type: string;
+  peak_hour: string;
+  reports_by_type: Array<{type: string; count: number}>;
+  reports_by_hour: Array<{hour: number; count: number}>;
 }
 
 export const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://10.0.0.4:3000";
@@ -76,6 +97,13 @@ function normalizeReport(payload: unknown, index: number): MapReport | null {
     confidence: typeof report.confidence === "number" ? report.confidence : null,
     createdAt,
     description: typeof report.description === "string" ? report.description : null,
+    upvotes: typeof report.upvotes === "number" ? report.upvotes : 0,
+    downvotes: typeof report.downvotes === "number" ? report.downvotes : 0,
+    expiresAt: typeof report.expiresAt === "string"
+      ? report.expiresAt
+      : typeof report.expires_at === "string"
+        ? String(report.expires_at)
+        : null,
   };
 }
 
@@ -114,4 +142,89 @@ export async function fetchMapReports(params: FetchMapReportsParams = {}): Promi
   return payload
     .map((item, index) => normalizeReport(item, index))
     .filter((report): report is MapReport => report !== null);
+}
+
+export async function voteMapReport(id: string, vote: "up" | "down"): Promise<void> {
+  const response = await fetch(`${API_BASE}/api/map/reports/${encodeURIComponent(id)}/vote`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({vote}),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Vote request failed: ${response.status}`);
+  }
+}
+
+export async function submitMapReport(payload: SubmitMapReportPayload): Promise<void> {
+  const response = await fetch(`${API_BASE}/api/map/reports`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Submit report failed: ${response.status}`);
+  }
+}
+
+function asNumber(value: unknown, fallback = 0): number {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+export async function fetchPublicStats(signal?: AbortSignal): Promise<PublicStats> {
+  const response = await fetch(`${API_BASE}/api/stats/public`, {
+    method: "GET",
+    headers: {"Content-Type": "application/json"},
+    cache: "no-store",
+    signal,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Public stats request failed: ${response.status}`);
+  }
+
+  const payload = (await response.json()) as Record<string, unknown>;
+
+  return {
+    total_reports_today: asNumber(payload.total_reports_today),
+    total_reports_week: asNumber(payload.total_reports_week),
+    busiest_area: typeof payload.busiest_area === "string" ? payload.busiest_area : "-",
+    most_common_type: typeof payload.most_common_type === "string" ? payload.most_common_type : "unknown",
+    peak_hour: typeof payload.peak_hour === "string" ? payload.peak_hour : "-",
+    reports_by_type: Array.isArray(payload.reports_by_type)
+      ? payload.reports_by_type.map((item) => {
+          const raw = (item ?? {}) as Record<string, unknown>;
+          return {
+            type: String(raw.type ?? "unknown"),
+            count: asNumber(raw.count),
+          };
+        })
+      : [],
+    reports_by_hour: Array.isArray(payload.reports_by_hour)
+      ? payload.reports_by_hour.map((item) => {
+          const raw = (item ?? {}) as Record<string, unknown>;
+          return {
+            hour: asNumber(raw.hour),
+            count: asNumber(raw.count),
+          };
+        })
+      : [],
+  };
+}
+
+export async function subscribeToZoneNotifications(payload: {
+  endpoint: string;
+  keys?: Record<string, string>;
+}): Promise<void> {
+  const response = await fetch(`${API_BASE}/api/map/subscriptions`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Subscription request failed: ${response.status}`);
+  }
 }

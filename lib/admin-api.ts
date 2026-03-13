@@ -20,6 +20,7 @@ export interface AdminEventListItem {
   id: string;
   eventType: MapEventType;
   locationText: string;
+  rawMessage: string | null;
   moderationStatus: ModerationStatus;
   parseStatus: string;
   createdAt: string;
@@ -79,34 +80,67 @@ function asMapEventType(value: unknown): MapEventType {
   ) {
     return normalized;
   }
+  // Map 'control' to 'checkpoint'
+  if (normalized === "control") {
+    return "checkpoint";
+  }
   return "unknown";
 }
 
 function normalizeListItem(payload: unknown, index: number): AdminEventListItem {
   const raw = (payload ?? {}) as Record<string, unknown>;
+  
+  // Handle both camelCase and snake_case field names
+  const eventType = raw.eventType ?? raw.event_type;
+  const locationText = raw.locationText ?? raw.location_text;
+  const parseStatus = raw.parseStatus ?? raw.parse_status;
+  const moderationStatus = raw.moderationStatus ?? raw.moderation_status;
+  const createdAt = raw.createdAt ?? raw.created_at;
+  const rawMessage = raw.rawMessage ?? raw.raw_message;
+  const confidence = raw.confidence;
+  
+  // Parse confidence from string if needed
+  let parsedConfidence: number | null = null;
+  if (typeof confidence === "number") {
+    parsedConfidence = confidence;
+  } else if (typeof confidence === "string") {
+    const parsed = parseFloat(confidence);
+    parsedConfidence = Number.isFinite(parsed) ? parsed : null;
+  }
+  
   return {
     id: String(raw.id ?? `evt-${index}`),
-    eventType: asMapEventType(raw.eventType),
-    locationText: typeof raw.locationText === "string" && raw.locationText.trim().length > 0 ? raw.locationText : "Unknown location",
-    moderationStatus: asModerationStatus(raw.moderationStatus),
-    parseStatus: typeof raw.parseStatus === "string" ? raw.parseStatus : "unknown",
-    createdAt: typeof raw.createdAt === "string" ? raw.createdAt : new Date().toISOString(),
-    confidence: typeof raw.confidence === "number" ? raw.confidence : null,
+    eventType: asMapEventType(eventType),
+    locationText: typeof locationText === "string" && locationText.trim().length > 0 ? locationText : "Unknown location",
+    rawMessage: typeof rawMessage === "string" && rawMessage.trim().length > 0 ? rawMessage : null,
+    moderationStatus: asModerationStatus(moderationStatus),
+    parseStatus: typeof parseStatus === "string" ? parseStatus : "unknown",
+    createdAt: typeof createdAt === "string" ? createdAt : new Date().toISOString(),
+    confidence: parsedConfidence,
   };
 }
 
 function normalizeDetail(payload: unknown): AdminEventDetail {
   const raw = (payload ?? {}) as Record<string, unknown>;
   const base = normalizeListItem(raw, 0);
+  
+  // Handle both camelCase and snake_case field names
+  const rawMessage = raw.rawMessage ?? raw.raw_message;
+  const senderName = raw.senderName ?? raw.sender_name;
+  const eventTime = raw.eventTime ?? raw.event_time;
+  const lat = raw.lat ?? raw.latitude;
+  const lng = raw.lng ?? raw.longitude;
+  const moderationNote = raw.moderationNote ?? raw.moderation_note;
+  
   return {
     ...base,
-    rawMessage: typeof raw.rawMessage === "string" ? raw.rawMessage : null,
+    rawMessage: typeof rawMessage === "string" ? rawMessage : null,
     description: typeof raw.description === "string" ? raw.description : null,
-    senderName: typeof raw.senderName === "string" ? raw.senderName : null,
-    eventTime: typeof raw.eventTime === "string" ? raw.eventTime : base.createdAt,
-    lat: typeof raw.lat === "number" ? raw.lat : null,
-    lng: typeof raw.lng === "number" ? raw.lng : null,
-    moderationNote: typeof raw.moderationNote === "string" ? raw.moderationNote : null,
+    senderName: typeof senderName === "string" ? senderName : null,
+    eventTime: typeof eventTime === "string" ? eventTime : base.createdAt,
+    lat: typeof lat === "number" ? lat : null,
+    lng: typeof lng === "number" ? lng : null,
+    moderationNote: typeof moderationNote === "string" ? moderationNote : null,
   };
 }
 

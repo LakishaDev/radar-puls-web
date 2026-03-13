@@ -140,13 +140,35 @@
     "description": "Radar Puls live map with community reports for Nis and nearby area.",
     "subtitle": "Reports feed with auto-refresh, type filters and time windows."
   },
+  "statsPage": {
+    "title": "Traffic Report Statistics",
+    "description": "Public statistics for traffic reports in Nis.",
+    "subtitle": "Daily and weekly overview with distribution by type and hour.",
+    "error": "Public stats API is currently unavailable.",
+    "empty": "No data available.",
+    "cards": {
+      "today": "Reports today",
+      "week": "Reports this week",
+      "busiestArea": "Busiest area",
+      "commonType": "Most common type",
+      "peakHour": "Peak hour"
+    },
+    "charts": {
+      "byType": "By event type",
+      "byHour": "By hour"
+    }
+  },
   "map": {
     "loading": "Loading live map...",
     "lastUpdated": "Last refresh: {value} ago",
     "waitingFirstRefresh": "Waiting for first refresh...",
     "ago": "{value} ago",
     "errors": {
-      "fallbackData": "API is currently unavailable. Showing demo data."
+      "fallbackData": "API is currently unavailable. Showing demo data.",
+      "voteFailed": "Vote failed. Please try again.",
+      "submitFailed": "Submission failed. Please try again.",
+      "locationRequired": "Location text is required.",
+      "invalidCoordinates": "Coordinates are invalid."
     },
     "mode": {
       "live": "Live API",
@@ -168,16 +190,56 @@
         "24h": "24h"
       }
     },
+    "view": {
+      "markers": "Markers",
+      "heatmap": "Heatmap"
+    },
     "feed": {
       "title": "Live reports",
       "activeCount": "{count} active",
       "empty": "No reports for selected filters.",
       "noDescription": "No description"
     },
+    "rawMessage": {
+      "label": "Original report"
+    },
     "confidence": {
       "none": "No confidence",
       "value": "Confidence {value}%",
       "short": "{value}%"
+    },
+    "submission": {
+      "cta": "Report",
+      "title": "Submit a report",
+      "locationPlaceholder": "Location text",
+      "descriptionPlaceholder": "Description (optional)",
+      "lat": "Latitude",
+      "lng": "Longitude",
+      "useMyLocation": "Use my location",
+      "pickOnMap": "Pick on map",
+      "pickOnMapActive": "Click map to pick",
+      "submit": "Send report",
+      "submitting": "Submitting...",
+      "success": "Report submitted."
+    },
+    "push": {
+      "cta": "Notify me",
+      "busy": "Enabling...",
+      "success": "Notifications enabled for your zone.",
+      "failed": "Unable to enable notifications.",
+      "denied": "Notification permission was denied.",
+      "unsupported": "Push notifications are not supported in this browser."
+    },
+    "sound": {
+      "on": "Sound on",
+      "off": "Sound off"
+    },
+    "proximity": {
+      "trackingOn": "Tracking on",
+      "trackingOff": "Tracking off",
+      "radius": "Proximity radius: {value}m",
+      "notificationTitle": "Warning - {distance}m",
+      "lastAlert": "Proximity alert: {type} in {distance}m"
     },
     "geolocation": {
       "cta": "Locate me",
@@ -186,6 +248,8 @@
       "unsupported": "Geolocation is not supported by this browser.",
       "you": "You are here"
     },
+    "expiry": "Expires in {value}",
+    "expiryShort": "exp {value}",
     "disclaimer": "Map is informational and depends on API data availability."
   },
   "admin": {
@@ -235,6 +299,7 @@
       "columns": {
         "type": "Type",
         "location": "Location",
+        "rawMessage": "Raw message",
         "status": "Status",
         "parse": "Parse",
         "time": "Time"

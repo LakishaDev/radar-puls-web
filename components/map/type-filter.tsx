@@ -1,7 +1,9 @@
 "use client";
 
+import type {ReactNode} from "react";
 import type {MapEventType} from "@/lib/api";
 import {cn} from "@/lib/utils";
+import {AlertTriangle, Car, Construction, HelpCircle, Radio, Shield} from "lucide-react";
 
 const order: MapEventType[] = ["police", "radar", "checkpoint", "accident", "traffic_jam", "unknown"];
 
@@ -12,6 +14,15 @@ const defaultLabels: Record<MapEventType, string> = {
   accident: "Udes",
   traffic_jam: "Guzva",
   unknown: "Ostalo",
+};
+
+const typeIcons: Record<MapEventType, ReactNode> = {
+  police: <Shield size={12} />,
+  radar: <Radio size={12} />,
+  checkpoint: <Construction size={12} />,
+  accident: <AlertTriangle size={12} />,
+  traffic_jam: <Car size={12} />,
+  unknown: <HelpCircle size={12} />,
 };
 
 interface TypeFilterProps {
@@ -46,6 +57,7 @@ export function TypeFilter({selected, labels, onChange}: TypeFilterProps) {
                 : "border-[var(--rp-border)] text-[var(--rp-ink-soft)] hover:bg-[var(--rp-surface)]"
             )}
           >
+            <span className="mr-1 inline-flex align-middle">{typeIcons[type]}</span>
             {labels?.[type] ?? defaultLabels[type]}
           </button>
         );

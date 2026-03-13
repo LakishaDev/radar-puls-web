@@ -14,10 +14,10 @@ export default function LandingPage() {
     <main className="min-h-screen bg-[var(--rp-bg)] text-[var(--rp-ink)]">
       <SiteNavbar />
       <HeroSection />
+      <MapSection />
       <ContentSections />
       <CountdownSection />
       <TestimonialsSection />
-      <MapSection />
       <NewsletterSection />
       <FaqSection />
       <DownloadCtaSection />

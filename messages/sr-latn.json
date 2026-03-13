@@ -140,13 +140,35 @@
     "description": "Radar Puls live mapa sa prijavama zajednice za Nis i okolinu.",
     "subtitle": "Feed prijava sa automatskim osvezavanjem, filterima tipa i vremenskim opsegom."
   },
+  "statsPage": {
+    "title": "Statistika saobracajnih prijava",
+    "description": "Javna statistika prijava za Nis.",
+    "subtitle": "Dnevni i nedeljni pregled sa raspodelom po tipu i satu.",
+    "error": "Public stats API trenutno nije dostupan.",
+    "empty": "Nema dostupnih podataka.",
+    "cards": {
+      "today": "Prijava danas",
+      "week": "Prijava ove nedelje",
+      "busiestArea": "Najaktivnija zona",
+      "commonType": "Najcesci tip",
+      "peakHour": "Udarni sat"
+    },
+    "charts": {
+      "byType": "Po tipu dogadjaja",
+      "byHour": "Po satu"
+    }
+  },
   "map": {
     "loading": "Ucitavanje live mape...",
     "lastUpdated": "Poslednje osvezavanje: pre {value}",
     "waitingFirstRefresh": "Ceka se prvo osvezavanje...",
     "ago": "pre {value}",
     "errors": {
-      "fallbackData": "API trenutno nije dostupan. Prikazani su demo podaci."
+      "fallbackData": "API trenutno nije dostupan. Prikazani su demo podaci.",
+      "voteFailed": "Glasanje nije uspelo. Pokusaj ponovo.",
+      "submitFailed": "Slanje prijave nije uspelo. Pokusaj ponovo.",
+      "locationRequired": "Polje lokacije je obavezno.",
+      "invalidCoordinates": "Koordinate nisu validne."
     },
     "mode": {
       "live": "Live API",
@@ -168,16 +190,56 @@
         "24h": "24h"
       }
     },
+    "view": {
+      "markers": "Markeri",
+      "heatmap": "Heatmap"
+    },
     "feed": {
       "title": "Live izvestaji",
       "activeCount": "{count} aktivnih",
       "empty": "Nema prijava za izabrane filtere.",
       "noDescription": "Bez opisa"
     },
+    "rawMessage": {
+      "label": "Originalna prijava"
+    },
     "confidence": {
       "none": "Bez confidence",
       "value": "Confidence {value}%",
       "short": "{value}%"
+    },
+    "submission": {
+      "cta": "Prijavi",
+      "title": "Posalji prijavu",
+      "locationPlaceholder": "Tekst lokacije",
+      "descriptionPlaceholder": "Opis (opciono)",
+      "lat": "Geografska sirina",
+      "lng": "Geografska duzina",
+      "useMyLocation": "Iskoristi moju lokaciju",
+      "pickOnMap": "Izaberi na mapi",
+      "pickOnMapActive": "Klikni mapu za izbor",
+      "submit": "Posalji prijavu",
+      "submitting": "Slanje...",
+      "success": "Prijava je poslata."
+    },
+    "push": {
+      "cta": "Obavesti me",
+      "busy": "Ukljucujem...",
+      "success": "Notifikacije su ukljucene za tvoju zonu.",
+      "failed": "Nije moguce ukljuciti notifikacije.",
+      "denied": "Dozvola za notifikacije je odbijena.",
+      "unsupported": "Push notifikacije nisu podrzane u ovom browser-u."
+    },
+    "sound": {
+      "on": "Zvuk ukljucen",
+      "off": "Zvuk iskljucen"
+    },
+    "proximity": {
+      "trackingOn": "Tracking ukljucen",
+      "trackingOff": "Tracking iskljucen",
+      "radius": "Proximity radius: {value}m",
+      "notificationTitle": "Upozorenje - {distance}m",
+      "lastAlert": "Proximity alert: {type} na {distance}m"
     },
     "geolocation": {
       "cta": "Pronadji me",
@@ -186,6 +248,8 @@
       "unsupported": "Geolokacija nije podrzana u ovom browser-u.",
       "you": "Tvoja lokacija"
     },
+    "expiry": "Istice za {value}",
+    "expiryShort": "istice {value}",
     "disclaimer": "Prikaz je informativan i zavisi od dostupnosti podataka sa API-ja."
   },
   "admin": {
@@ -235,6 +299,7 @@
       "columns": {
         "type": "Tip",
         "location": "Lokacija",
+        "rawMessage": "Raw poruka",
         "status": "Status",
         "parse": "Parse",
         "time": "Vreme"
