@@ -753,6 +753,8 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
     });
 
     return () => {
+      socket.removeAllListeners();
+      socket.io.reconnection(false);
       socket.disconnect();
     };
   }, [playByType, soundEnabled, t]);
