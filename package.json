@@ -5,12 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:worker": "opennextjs-cloudflare build && cp .open-next/worker.js .open-next/assets/_worker.js",
+    "build:worker": "opennextjs-cloudflare build",
     "preview": "npm run build:worker && opennextjs-cloudflare preview",
     "preview:worker": "opennextjs-cloudflare preview",
     "qa:preview": "node scripts/qa-preview.mjs",
     "qa:preview:up": "node scripts/qa-preview-up.mjs",
-    "deploy": "npm run build:worker && wrangler pages deploy .open-next/assets",
+    "deploy": "opennextjs-cloudflare deploy",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit"
