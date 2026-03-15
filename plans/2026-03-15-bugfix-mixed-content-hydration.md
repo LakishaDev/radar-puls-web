@@ -220,7 +220,7 @@ ws.onerror = () => {
 | `report_removed` | Dojava preglasana | `{ id: "uuid" }` |
 ```
 
-#### 2. Tabela tipova događaja — dodati `checkpoint`
+##### 2. Tabela tipova događaja — dodati `checkpoint`
 
 ```markdown
 | `checkpoint` | Kontrolni punkt (PU, carina) | 🚧 |
