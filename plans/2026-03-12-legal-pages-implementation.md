@@ -158,7 +158,7 @@ export function generateStaticParams() {
 - `app/[locale]/community-guidelines/page.tsx`
 - `components/legal/legal-page-layout.tsx` (opciono — reusable layout)
 
-## Fajlovi koje treba izmeniti (postojeci)
+## #Fajlovi koje treba izmeniti (postojeci)
 - `app/[locale]/terms/page.tsx` — zameni 4 bullet pointa sa 12 sekcija
 - `app/[locale]/privacy/page.tsx` — zameni 4 bullet pointa sa 12 sekcija
 - `components/landing/site-footer.tsx` — novi linkovi
