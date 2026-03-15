@@ -6,6 +6,8 @@ export type MapEventType =
   | "traffic_jam"
   | "unknown";
 
+export type GeoSource = "fallback" | "cache" | "google" | "google_partial" | "nominatim" | "demo" | null;
+
 export interface MapReport {
   id: string;
   eventType: MapEventType;
@@ -14,7 +16,7 @@ export interface MapReport {
   eventTime: string;
   lat: number;
   lng: number;
-  geoSource: string | null;
+  geoSource: GeoSource;
   rawMessage: string | null;
   confidence: number | null;
   createdAt: string;
@@ -22,6 +24,21 @@ export interface MapReport {
   upvotes: number;
   downvotes: number;
   expiresAt: string | null;
+}
+
+function toGeoSource(value: unknown): GeoSource {
+  const normalized = String(value ?? "").toLowerCase();
+  if (
+    normalized === "fallback" ||
+    normalized === "cache" ||
+    normalized === "google" ||
+    normalized === "google_partial" ||
+    normalized === "nominatim" ||
+    normalized === "demo"
+  ) {
+    return normalized;
+  }
+  return null;
 }
 
 export interface FetchMapReportsParams {
@@ -95,7 +112,7 @@ function normalizeReport(payload: unknown, index: number): MapReport | null {
     eventTime,
     lat,
     lng,
-    geoSource: typeof report.geoSource === "string" ? report.geoSource : null,
+    geoSource: toGeoSource(report.geoSource),
     rawMessage: typeof report.rawMessage === "string" ? report.rawMessage : null,
     confidence: typeof report.confidence === "number" ? report.confidence : null,
     createdAt,

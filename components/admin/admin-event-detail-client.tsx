@@ -12,6 +12,7 @@ interface AdminEventDetailClientProps {
 
 export function AdminEventDetailClient({id}: AdminEventDetailClientProps) {
   const t = useTranslations("admin");
+  const tMap = useTranslations("map");
   const [event, setEvent] = useState<AdminEventDetail | null>(null);
   const [isActing, setIsActing] = useState(false);
   const [note, setNote] = useState("");
@@ -84,6 +85,13 @@ export function AdminEventDetailClient({id}: AdminEventDetailClientProps) {
     }
   };
 
+  const geoSourceLabel =
+    event?.geoSource === "google_partial"
+      ? tMap("geo.approximate")
+      : event?.geoSource
+        ? tMap(`geo.source.${event.geoSource}`)
+        : "--";
+
   return (
     <div className="space-y-5">
       <header className="flex flex-wrap items-end justify-between gap-3">
@@ -111,6 +119,7 @@ export function AdminEventDetailClient({id}: AdminEventDetailClientProps) {
           <dl className="mt-2 space-y-1 text-sm text-slate-200">
             <div><dt className="text-slate-500">{t("eventDetail.fields.type")}</dt><dd>{event?.eventType ?? "--"}</dd></div>
             <div><dt className="text-slate-500">{t("eventDetail.fields.location")}</dt><dd>{event?.locationText ?? "--"}</dd></div>
+            <div><dt className="text-slate-500">{t("eventDetail.fields.geoSource")}</dt><dd>{geoSourceLabel}</dd></div>
             <div><dt className="text-slate-500">{t("eventDetail.fields.confidence")}</dt><dd>{typeof event?.confidence === "number" ? `${Math.round(event.confidence)}%` : "--"}</dd></div>
             <div><dt className="text-slate-500">{t("eventDetail.fields.status")}</dt><dd>{event?.moderationStatus ?? "--"}</dd></div>
           </dl>

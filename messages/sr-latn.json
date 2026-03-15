@@ -203,6 +203,17 @@
     "rawMessage": {
       "label": "Originalna prijava"
     },
+    "geo": {
+      "approximate": "Priblizna lokacija",
+      "source": {
+        "fallback": "Poznata lokacija",
+        "cache": "Potvrdjena lokacija",
+        "google": "Google Maps",
+        "google_partial": "Priblizna lokacija",
+        "nominatim": "OpenStreetMap",
+        "demo": "Demo lokacija"
+      }
+    },
     "confidence": {
       "none": "Bez confidence",
       "value": "Confidence {value}%",
@@ -314,6 +325,7 @@
       "fields": {
         "type": "Tip",
         "location": "Lokacija",
+        "geoSource": "Geo source",
         "confidence": "Confidence",
         "status": "Moderation status"
       },

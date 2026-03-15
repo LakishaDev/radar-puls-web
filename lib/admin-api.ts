@@ -1,4 +1,4 @@
-import {API_BASE, type MapEventType} from "@/lib/api";
+import {API_BASE, type GeoSource, type MapEventType} from "@/lib/api";
 
 export type ModerationStatus = "auto_approved" | "pending_review" | "approved" | "rejected";
 
@@ -34,6 +34,7 @@ export interface AdminEventDetail extends AdminEventListItem {
   eventTime: string;
   lat: number | null;
   lng: number | null;
+  geoSource: GeoSource;
   moderationNote: string | null;
 }
 
@@ -87,6 +88,21 @@ function asMapEventType(value: unknown): MapEventType {
   return "unknown";
 }
 
+function asGeoSource(value: unknown): GeoSource {
+  const normalized = String(value ?? "").toLowerCase();
+  if (
+    normalized === "fallback" ||
+    normalized === "cache" ||
+    normalized === "google" ||
+    normalized === "google_partial" ||
+    normalized === "nominatim" ||
+    normalized === "demo"
+  ) {
+    return normalized;
+  }
+  return null;
+}
+
 function normalizeListItem(payload: unknown, index: number): AdminEventListItem {
   const raw = (payload ?? {}) as Record<string, unknown>;
   
@@ -130,6 +146,7 @@ function normalizeDetail(payload: unknown): AdminEventDetail {
   const eventTime = raw.eventTime ?? raw.event_time;
   const lat = raw.lat ?? raw.latitude;
   const lng = raw.lng ?? raw.longitude;
+  const geoSource = raw.geoSource ?? raw.geo_source;
   const moderationNote = raw.moderationNote ?? raw.moderation_note;
   
   return {
@@ -140,6 +157,7 @@ function normalizeDetail(payload: unknown): AdminEventDetail {
     eventTime: typeof eventTime === "string" ? eventTime : base.createdAt,
     lat: typeof lat === "number" ? lat : null,
     lng: typeof lng === "number" ? lng : null,
+    geoSource: asGeoSource(geoSource),
     moderationNote: typeof moderationNote === "string" ? moderationNote : null,
   };
 }

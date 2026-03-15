@@ -1003,6 +1003,7 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
                     key={report.id}
                     position={[report.lat, report.lng]}
                     icon={createMarkerIcon(report.eventType)}
+                    opacity={report.geoSource === "google_partial" ? 0.78 : 1}
                     eventHandlers={{click: () => setActiveReport(report)}}
                   >
                     <Popup>
@@ -1018,6 +1019,21 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
                         <p className="mt-1 text-slate-600">{report.locationText}</p>
                         <p className="mt-1 text-xs text-slate-400">{t("ago", {value: formatRelativeValue(report.createdAt)})}</p>
                         <p className="mt-1 text-[11px] text-slate-500">{t("expiry", {value: formatCountdown(resolveExpiry(report))})}</p>
+                        {report.geoSource ? (
+                          <span
+                            className={cn(
+                              "mt-1.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold",
+                              report.geoSource === "google_partial"
+                                ? "bg-amber-100 text-amber-700"
+                                : "bg-sky-100 text-sky-700"
+                            )}
+                          >
+                            <MapPin className="h-3 w-3" />
+                            {report.geoSource === "google_partial"
+                              ? t("geo.approximate")
+                              : t(`geo.source.${report.geoSource}`)}
+                          </span>
+                        ) : null}
                         {report.rawMessage ? (
                           <div className="mt-1.5 rounded border border-slate-200 bg-slate-50 px-2 py-1">
                             <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">{t("rawMessage.label")}</p>

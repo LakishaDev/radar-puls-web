@@ -203,6 +203,17 @@
     "rawMessage": {
       "label": "Оригинална пријава"
     },
+    "geo": {
+      "approximate": "Приближна локација",
+      "source": {
+        "fallback": "Позната локација",
+        "cache": "Потврђена локација",
+        "google": "Google Maps",
+        "google_partial": "Приближна локација",
+        "nominatim": "OpenStreetMap",
+        "demo": "Demo локација"
+      }
+    },
     "confidence": {
       "none": "Без confidence",
       "value": "Confidence {value}%",
@@ -314,6 +325,7 @@
       "fields": {
         "type": "Тип",
         "location": "Локација",
+        "geoSource": "Geo source",
         "confidence": "Confidence",
         "status": "Moderation status"
       },

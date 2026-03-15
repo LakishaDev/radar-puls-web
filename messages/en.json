@@ -203,6 +203,17 @@
     "rawMessage": {
       "label": "Original report"
     },
+    "geo": {
+      "approximate": "Approximate location",
+      "source": {
+        "fallback": "Known location",
+        "cache": "Verified location",
+        "google": "Google Maps",
+        "google_partial": "Approximate location",
+        "nominatim": "OpenStreetMap",
+        "demo": "Demo location"
+      }
+    },
     "confidence": {
       "none": "No confidence",
       "value": "Confidence {value}%",
@@ -314,6 +325,7 @@
       "fields": {
         "type": "Type",
         "location": "Location",
+        "geoSource": "Geocoding source",
         "confidence": "Confidence",
         "status": "Moderation status"
       },
