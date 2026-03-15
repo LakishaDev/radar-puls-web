@@ -2,6 +2,7 @@
 
 import {useEffect, useMemo, useRef, useState} from "react";
 import {useTranslations} from "next-intl";
+import {io} from "socket.io-client";
 import "leaflet/dist/leaflet.css";
 import "react-leaflet-cluster/dist/assets/MarkerCluster.css";
 import "react-leaflet-cluster/dist/assets/MarkerCluster.Default.css";
@@ -709,79 +710,50 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
   }, [liveTrackingEnabled, playByType, proximityRadiusM, reports, selectedTypes, soundEnabled, t, userLocation]);
 
   useEffect(() => {
-    const wsBase = process.env.NEXT_PUBLIC_WS_URL
-      ?? API_BASE.replace(/^http:/, "ws:").replace(/^https:/, "wss:");
-    const wsUrl = `${wsBase.replace(/\/$/, "")}/ws/map`;
+    const serverUrl = process.env.NEXT_PUBLIC_WS_URL ?? API_BASE;
 
-    // Prevent insecure ws:// connection attempts when the app is served over HTTPS.
-    if (
-      typeof window !== "undefined" &&
-      window.location.protocol === "https:" &&
-      wsUrl.startsWith("ws://")
-    ) {
-      console.warn("[MapClient] Blocked insecure WebSocket URL from HTTPS context:", wsUrl);
-      return;
-    }
+    const socket = io(serverUrl, {
+      path: "/ws/map",
+      transports: ["websocket"],
+      reconnectionAttempts: 5,
+      reconnectionDelay: 3000,
+    });
 
-    const ws = new WebSocket(wsUrl);
+    socket.on("new_report", (payload: MapReport) => {
+      if (!payload) return;
+      setReports((current) => [payload, ...current.filter((item) => item.id !== payload.id)]);
 
-    ws.onmessage = (event) => {
-      try {
-        const message = JSON.parse(String(event.data)) as {
-          event?: string;
-          type?: string;
-          payload?: MapReport;
-          data?: MapReport;
-          id?: string;
-        };
-        const kind = message.event ?? message.type;
-        const payload = message.payload ?? message.data;
-
-        if (kind === "new_report" && payload) {
-          setReports((current) => [payload, ...current.filter((item) => item.id !== payload.id)]);
-
-          if (soundEnabled) {
-            playByType(payload.eventType);
-          }
-
-          if (
-            typeof window !== "undefined" &&
-            "Notification" in window &&
-            Notification.permission === "granted"
-          ) {
-            new Notification(`Radar Puls - ${t(markerLabelKey[payload.eventType])}`, {
-              body: payload.rawMessage || payload.locationText || "Nova prijava",
-              icon: "/images/icon-192.png",
-              tag: `report-${payload.id}`,
-            });
-          }
-        }
-
-        if (kind === "report_updated" && payload) {
-          setReports((current) => current.map((item) => item.id === payload.id ? payload : item));
-        }
-
-        if (kind === "report_removed") {
-          const removeId = payload?.id ?? message.id;
-          if (removeId) {
-            setReports((current) => current.filter((item) => item.id !== removeId));
-          }
-        }
-      } catch {
-        // Ignore malformed WS payloads and keep polling as primary source of truth.
+      if (soundEnabled) {
+        playByType(payload.eventType);
       }
-    };
 
-    ws.onerror = () => {
-      // Polling is always active, so WS errors are non-fatal.
-    };
+      if (
+        typeof window !== "undefined" &&
+        "Notification" in window &&
+        Notification.permission === "granted"
+      ) {
+        new Notification(`Radar Puls - ${t(markerLabelKey[payload.eventType])}`, {
+          body: payload.rawMessage || payload.locationText || "Nova prijava",
+          icon: "/images/icon-192.png",
+          tag: `report-${payload.id}`,
+        });
+      }
+    });
+
+    socket.on("report_updated", (payload: MapReport) => {
+      if (!payload) return;
+      setReports((current) => current.map((item) => item.id === payload.id ? payload : item));
+    });
+
+    socket.on("report_removed", (payload: {id?: string} | string) => {
+      const removeId = typeof payload === "string" ? payload : payload?.id;
+      if (removeId) {
+        setReports((current) => current.filter((item) => item.id !== removeId));
+      }
+    });
 
     return () => {
-      if (ws.readyState === WebSocket.CONNECTING) {
-        ws.onopen = () => ws.close();
-      } else {
-        ws.close();
-      }
+      socket.disconnect();
     };
   }, [playByType, soundEnabled, t]);
 
