@@ -1,5 +1,4 @@
-import {readFile} from "node:fs/promises";
-import path from "node:path";
+import legalMarkdown from "@/data/legal-markdown.json";
 
 export type LegalLocale = "sr-latn" | "sr-cyrl" | "en";
 
@@ -49,8 +48,14 @@ export async function getLegalHubContent(locale: LegalLocale): Promise<LegalHubC
 }
 
 async function readLegalMarkdown(locale: LegalLocale, slug: LegalDocumentSlug) {
-  const filePath = path.join(process.cwd(), "docs", "legal", `${slug}-${locale}.md`);
-  return readFile(filePath, "utf8");
+  const key = `${slug}-${locale}`;
+  const markdown = legalMarkdown[key as keyof typeof legalMarkdown];
+
+  if (!markdown) {
+    throw new Error(`Missing legal markdown content for key: ${key}`);
+  }
+
+  return markdown;
 }
 
 function parseLegalDocument(markdown: string): LegalDocument {
