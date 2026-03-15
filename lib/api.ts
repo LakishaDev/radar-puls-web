@@ -49,7 +49,7 @@ export interface PublicStats {
   reports_by_hour: Array<{hour: number; count: number}>;
 }
 
-export const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://10.0.0.4:3000";
+export const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "https://api.radarpuls.com";
 
 function toMapEventType(value: unknown): MapEventType {
   const normalized = String(value ?? "unknown").toLowerCase();

@@ -27,9 +27,16 @@ function getTimeLeft(targetDate: Date): CounterState {
 export function CountdownSection() {
   const t = useTranslations("countdown");
   const targetDate = useMemo(() => new Date(appConfig.liveMapLaunchDate), []);
-  const [timeLeft, setTimeLeft] = useState<CounterState>(() => getTimeLeft(targetDate));
+  const [timeLeft, setTimeLeft] = useState<CounterState>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
+    setTimeLeft(getTimeLeft(targetDate));
+
     const timer = window.setInterval(() => {
       setTimeLeft(getTimeLeft(targetDate));
     }, 1000);

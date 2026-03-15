@@ -711,7 +711,19 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
   useEffect(() => {
     const wsBase = process.env.NEXT_PUBLIC_WS_URL
       ?? API_BASE.replace(/^http:/, "ws:").replace(/^https:/, "wss:");
-    const ws = new WebSocket(`${wsBase.replace(/\/$/, "")}/ws/map`);
+    const wsUrl = `${wsBase.replace(/\/$/, "")}/ws/map`;
+
+    // Prevent insecure ws:// connection attempts when the app is served over HTTPS.
+    if (
+      typeof window !== "undefined" &&
+      window.location.protocol === "https:" &&
+      wsUrl.startsWith("ws://")
+    ) {
+      console.warn("[MapClient] Blocked insecure WebSocket URL from HTTPS context:", wsUrl);
+      return;
+    }
+
+    const ws = new WebSocket(wsUrl);
 
     ws.onmessage = (event) => {
       try {

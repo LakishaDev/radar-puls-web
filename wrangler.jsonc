@@ -3,6 +3,9 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-03-15",
   "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "NEXT_PUBLIC_API_URL": "https://api.radarpuls.com"
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
