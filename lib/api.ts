@@ -51,6 +51,9 @@ export interface PublicStats {
 
 export const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "https://api.radarpuls.com";
 
+// Browser requests are proxied through Next.js to avoid CORS issues.
+const CLIENT_API_BASE = typeof window !== "undefined" ? "/api/proxy" : API_BASE;
+
 function toMapEventType(value: unknown): MapEventType {
   const normalized = String(value ?? "unknown").toLowerCase();
   if (
@@ -121,7 +124,7 @@ export async function fetchMapReports(params: FetchMapReportsParams = {}): Promi
   }
 
   const queryString = query.toString();
-  const url = `${API_BASE}/api/map/reports${queryString ? `?${queryString}` : ""}`;
+  const url = `${CLIENT_API_BASE}/map/reports${queryString ? `?${queryString}` : ""}`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -145,7 +148,7 @@ export async function fetchMapReports(params: FetchMapReportsParams = {}): Promi
 }
 
 export async function voteMapReport(id: string, vote: "up" | "down"): Promise<void> {
-  const response = await fetch(`${API_BASE}/api/map/reports/${encodeURIComponent(id)}/vote`, {
+  const response = await fetch(`${CLIENT_API_BASE}/map/reports/${encodeURIComponent(id)}/vote`, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({vote}),
@@ -157,7 +160,7 @@ export async function voteMapReport(id: string, vote: "up" | "down"): Promise<vo
 }
 
 export async function submitMapReport(payload: SubmitMapReportPayload): Promise<void> {
-  const response = await fetch(`${API_BASE}/api/map/reports`, {
+  const response = await fetch(`${CLIENT_API_BASE}/map/reports`, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(payload),
@@ -174,7 +177,7 @@ function asNumber(value: unknown, fallback = 0): number {
 }
 
 export async function fetchPublicStats(signal?: AbortSignal): Promise<PublicStats> {
-  const response = await fetch(`${API_BASE}/api/stats/public`, {
+  const response = await fetch(`${CLIENT_API_BASE}/stats/public`, {
     method: "GET",
     headers: {"Content-Type": "application/json"},
     cache: "no-store",
@@ -218,7 +221,7 @@ export async function subscribeToZoneNotifications(payload: {
   endpoint: string;
   keys?: Record<string, string>;
 }): Promise<void> {
-  const response = await fetch(`${API_BASE}/api/map/subscriptions`, {
+  const response = await fetch(`${CLIENT_API_BASE}/map/subscriptions`, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(payload),

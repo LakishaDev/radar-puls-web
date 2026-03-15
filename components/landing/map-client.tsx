@@ -776,7 +776,13 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
       // Polling is always active, so WS errors are non-fatal.
     };
 
-    return () => ws.close();
+    return () => {
+      if (ws.readyState === WebSocket.CONNECTING) {
+        ws.onopen = () => ws.close();
+      } else {
+        ws.close();
+      }
+    };
   }, [playByType, soundEnabled, t]);
 
   const filteredReports = useMemo(() => {

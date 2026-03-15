@@ -1,6 +1,6 @@
 "use client";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useTranslations} from "next-intl";
 import {Link} from "@/i18n/navigation";
 
@@ -8,13 +8,11 @@ const storageKey = "cookie_consent";
 
 export function CookieBanner() {
   const t = useTranslations("cookie");
-  const [visible, setVisible] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
+  const [visible, setVisible] = useState(false);
 
-    return window.localStorage.getItem(storageKey) !== "accepted";
-  });
+  useEffect(() => {
+    setVisible(window.localStorage.getItem(storageKey) !== "accepted");
+  }, []);
 
   if (!visible) {
     return null;
