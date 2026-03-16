@@ -162,8 +162,19 @@ function normalizeDetail(payload: unknown): AdminEventDetail {
   };
 }
 
+// On the client, route admin requests through the Next.js proxy so that:
+// 1. CORS is avoided (same-origin request to /api/proxy)
+// 2. The server-side API_URL env var is used for the real backend address
+// Paths like /api/admin/stats become /api/proxy/admin/stats
+function adminUrl(path: string): string {
+  if (typeof window !== "undefined") {
+    return `/api/proxy${path.replace(/^\/api/, "")}`;
+  }
+  return `${API_BASE}${path}`;
+}
+
 async function adminRequest<T>(path: string, options: RequestOptions): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
+  const response = await fetch(adminUrl(path), {
     method: options.method ?? "GET",
     signal: options.signal,
     cache: "no-store",

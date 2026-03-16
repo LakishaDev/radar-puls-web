@@ -4,13 +4,22 @@ const BACKEND = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? "https
 
 type Params = Promise<{path: string[]}>;
 
+function buildProxyHeaders(request: NextRequest): HeadersInit {
+  const headers: HeadersInit = {"Content-Type": "application/json"};
+  const auth = request.headers.get("Authorization");
+  if (auth) {
+    headers["Authorization"] = auth;
+  }
+  return headers;
+}
+
 export async function GET(request: NextRequest, {params}: {params: Params}) {
   const {path} = await params;
   const {search} = new URL(request.url);
   const backendUrl = `${BACKEND}/api/${path.join("/")}${search}`;
 
   const res = await fetch(backendUrl, {
-    headers: {"Content-Type": "application/json"},
+    headers: buildProxyHeaders(request),
     signal: request.signal,
   });
 
@@ -28,7 +37,7 @@ export async function POST(request: NextRequest, {params}: {params: Params}) {
   const body = await request.text();
   const res = await fetch(backendUrl, {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
+    headers: buildProxyHeaders(request),
     body,
     signal: request.signal,
   });

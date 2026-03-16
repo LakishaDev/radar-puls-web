@@ -348,10 +348,6 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
   const alertedRef = useRef<Map<string, number>>(new Map());
   const watchIdRef = useRef<number | null>(null);
   const {playByType} = useAlertSound(soundEnabled);
-  const soundEnabledRef = useRef(soundEnabled);
-  const playByTypeRef = useRef(playByType);
-  useEffect(() => { soundEnabledRef.current = soundEnabled; }, [soundEnabled]);
-  useEffect(() => { playByTypeRef.current = playByType; }, [playByType]);
 
   const typeLabels = useMemo(() => {
     return {
@@ -727,19 +723,17 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
       if (!payload) return;
       setReports((current) => [payload, ...current.filter((item) => item.id !== payload.id)]);
 
-      if (soundEnabledRef.current) {
-        playByTypeRef.current(payload.eventType);
-      }
-
       if (
         typeof window !== "undefined" &&
         "Notification" in window &&
         Notification.permission === "granted"
       ) {
         new Notification(`Radar Puls - ${t(markerLabelKey[payload.eventType])}`, {
-          body: payload.rawMessage || payload.locationText || "Nova prijava",
+          body: payload.locationText || "Nova prijava na mapi",
           icon: "/images/icon-192.png",
-          tag: `report-${payload.id}`,
+          tag: `report-gentle-${payload.id}`,
+          silent: true,
+          requireInteraction: false,
         });
       }
     });
@@ -761,7 +755,6 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
       socket.io.reconnection(false);
       socket.disconnect();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [t]);
 
   const filteredReports = useMemo(() => {
