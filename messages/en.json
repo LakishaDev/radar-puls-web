@@ -248,7 +248,9 @@
     "proximity": {
       "trackingOn": "Tracking on",
       "trackingOff": "Tracking off",
-      "radius": "Proximity radius: {value}m",
+      "title": "Alert radius",
+      "valueBadge": "{value} m",
+      "helper": "Pick a preset or fine-tune with the slider (100-1500 m).",
       "notificationTitle": "Warning - {distance}m",
       "lastAlert": "Proximity alert: {type} in {distance}m"
     },
