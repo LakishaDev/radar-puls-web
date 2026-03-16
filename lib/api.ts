@@ -82,6 +82,9 @@ function toMapEventType(value: unknown): MapEventType {
   ) {
     return normalized;
   }
+  if (normalized === "control") {
+    return "checkpoint";
+  }
   return "unknown";
 }
 
