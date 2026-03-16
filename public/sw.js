@@ -11,6 +11,7 @@ self.addEventListener("push", (event) => {
     title: "Radar Puls",
     body: "Stigla je nova prijava u tvojoj zoni.",
     url: "/sr-latn/mapa",
+    urgent: false,
   };
 
   try {
@@ -22,19 +23,30 @@ self.addEventListener("push", (event) => {
     // Keep default payload when push payload is not valid JSON.
   }
 
-  const options = {
-    body: payload.body || "Stigla je nova prijava u tvojoj zoni.",
-    icon: "/images/icon-192.png",
-    badge: "/images/icon-96.png",
-    vibrate: [200, 100, 200],
-    tag: "radar-puls-alert",
-    renotify: true,
-    data: {url: payload.url || "/sr-latn/mapa"},
-    actions: [
-      {action: "open", title: "Otvori mapu"},
-      {action: "dismiss", title: "Zatvori"},
-    ],
-  };
+  const options = payload.urgent
+    ? {
+      body: payload.body || "Stigla je nova prijava u tvojoj zoni.",
+      icon: "/images/icon-192.png",
+      badge: "/images/icon-96.png",
+      vibrate: [200, 100, 200, 100, 300],
+      tag: payload.tag || "radar-puls-urgent",
+      renotify: true,
+      requireInteraction: true,
+      data: {url: payload.url || "/sr-latn/mapa"},
+      actions: [
+        {action: "open", title: "Otvori mapu"},
+        {action: "dismiss", title: "Zatvori"},
+      ],
+    }
+    : {
+      body: payload.body || "Nova prijava na mapi.",
+      icon: "/images/icon-192.png",
+      tag: payload.tag || "radar-puls-gentle",
+      silent: true,
+      renotify: false,
+      requireInteraction: false,
+      data: {url: payload.url || "/sr-latn/mapa"},
+    };
 
   event.waitUntil(
     self.registration.showNotification(payload.title || "Radar Puls", options)

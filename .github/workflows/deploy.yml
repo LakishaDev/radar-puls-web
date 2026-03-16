@@ -36,6 +36,7 @@ jobs:
         env:
           CI: '1'
           NEXT_TELEMETRY_DISABLED: '1'
+          NEXT_PUBLIC_VAPID_PUBLIC_KEY: ${{ secrets.NEXT_PUBLIC_VAPID_PUBLIC_KEY }}
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
