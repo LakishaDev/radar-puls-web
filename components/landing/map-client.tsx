@@ -6,7 +6,7 @@ import {io} from "socket.io-client";
 import "leaflet/dist/leaflet.css";
 import "react-leaflet-cluster/dist/assets/MarkerCluster.css";
 import "react-leaflet-cluster/dist/assets/MarkerCluster.Default.css";
-import {MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents} from "react-leaflet";
+import {Circle, MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import L from "leaflet";
 import markersData from "@/data/markers.json";
@@ -62,6 +62,10 @@ const STORAGE_KEYS = {
 } as const;
 
 const PROXIMITY_ALERT_COOLDOWN_MS = 5 * 60 * 1000;
+const PROXIMITY_RADIUS_MIN_M = 100;
+const PROXIMITY_RADIUS_MAX_M = 1500;
+const PROXIMITY_RADIUS_PRESETS_M = [100, 250, 500, 1000, 1500] as const;
+const PROXIMITY_RADIUS_PREVIEW_TIMEOUT_MS = 2500;
 
 const markerLabelKey: Record<MapEventType, string> = {
   police: "types.police",
@@ -97,42 +101,23 @@ interface MapClientProps {
 }
 
 function createMarkerIcon(type: MapEventType) {
-  const cfg = markerConfig[type];
   const iconPath = markerSvgMap[type];
   return L.divIcon({
-    html: `<div style="
-      background:${cfg.bg};
-      width:36px;height:36px;
-      border-radius:50%;
-      border:2.5px solid ${cfg.border};
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 2px 10px rgba(0,0,0,0.25);
-      overflow:hidden;
-      cursor:pointer;
-    "><img src="${iconPath}" alt="${type}" style="width:20px;height:20px;display:block;"/></div>`,
+    html: `<img src="${iconPath}" alt="${type}" style="width:26px;height:26px;display:block;"/>`,
     className: "",
-    iconSize: [36, 36],
-    iconAnchor: [18, 18],
-    popupAnchor: [0, -22],
+    iconSize: [26, 26],
+    iconAnchor: [13, 26],
+    popupAnchor: [0, -24],
   });
 }
 
 function createUserLocationIcon() {
   return L.divIcon({
-    html: `<div style="
-      width:34px;height:34px;
-      border-radius:50%;
-      border:2.5px solid #93C5FD;
-      background:#1D4ED8;
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 2px 10px rgba(0,0,0,0.25);
-      overflow:hidden;
-      cursor:pointer;
-    "><img src="/images/markers/user.svg" alt="user" style="width:19px;height:19px;display:block;"/></div>`,
+    html: `<img src="/images/markers/user.svg" alt="user" style="width:24px;height:24px;display:block;"/>`,
     className: "",
-    iconSize: [34, 34],
-    iconAnchor: [17, 17],
-    popupAnchor: [0, -20],
+    iconSize: [24, 24],
+    iconAnchor: [12, 24],
+    popupAnchor: [0, -22],
   });
 }
 
@@ -325,6 +310,7 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
   const [liveTrackingEnabled, setLiveTrackingEnabled] = useState(false);
   const [proximityRadiusM, setProximityRadiusM] = useState(300);
+  const [showProximityRadiusPreview, setShowProximityRadiusPreview] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [lastProximityInfo, setLastProximityInfo] = useState<string | null>(null);
   const [locating, setLocating] = useState(false);
@@ -347,6 +333,7 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
   });
   const alertedRef = useRef<Map<string, number>>(new Map());
   const watchIdRef = useRef<number | null>(null);
+  const proximityPreviewTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const {playByType} = useAlertSound(soundEnabled);
 
   const typeLabels = useMemo(() => {
@@ -392,6 +379,19 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
       },
       {enableHighAccuracy: true, timeout: 10_000}
     );
+  };
+
+  const handleProximityRadiusChange = (nextRadiusRaw: number) => {
+    const nextRadius = Math.min(PROXIMITY_RADIUS_MAX_M, Math.max(PROXIMITY_RADIUS_MIN_M, Math.round(nextRadiusRaw)));
+    setProximityRadiusM(nextRadius);
+
+    if (proximityPreviewTimeoutRef.current) {
+      clearTimeout(proximityPreviewTimeoutRef.current);
+    }
+    setShowProximityRadiusPreview(true);
+    proximityPreviewTimeoutRef.current = setTimeout(() => {
+      setShowProximityRadiusPreview(false);
+    }, PROXIMITY_RADIUS_PREVIEW_TIMEOUT_MS);
   };
 
   const handleVote = async (report: MapReport, vote: "up" | "down") => {
@@ -599,9 +599,17 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
     }
 
     const savedRadius = Number(window.localStorage.getItem(STORAGE_KEYS.proximityRadiusM));
-    if (Number.isFinite(savedRadius) && savedRadius >= 100 && savedRadius <= 1000) {
+    if (Number.isFinite(savedRadius) && savedRadius >= PROXIMITY_RADIUS_MIN_M && savedRadius <= PROXIMITY_RADIUS_MAX_M) {
       setProximityRadiusM(savedRadius);
     }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (proximityPreviewTimeoutRef.current) {
+        clearTimeout(proximityPreviewTimeoutRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -787,11 +795,15 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
   const sortedReports = useMemo(() => {
     return [...filteredReports].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }, [filteredReports]);
+  const proximityPercent = Math.round(
+    ((proximityRadiusM - PROXIMITY_RADIUS_MIN_M) / (PROXIMITY_RADIUS_MAX_M - PROXIMITY_RADIUS_MIN_M)) * 100
+  );
 
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-[var(--rp-border)] bg-[var(--rp-card)] px-3 py-2">
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="rounded-lg border border-[var(--rp-border)] bg-[var(--rp-card)] px-3 py-2">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-2">
           <TypeFilter selected={selectedTypes} labels={typeLabels} onChange={setSelectedTypes} />
           <TimeFilter selected={selectedWindow} labels={timeLabels} onChange={setSelectedWindow} />
           <div className="inline-flex overflow-hidden rounded-md border border-[var(--rp-border)]">
@@ -870,24 +882,64 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
             <Bell size={13} className="mr-1 inline" />
             {pushBusy ? t("push.busy") : t("push.cta")}
           </button>
-        </div>
-        <div className="text-xs text-[var(--rp-ink-soft)]">
-          {lastUpdatedAt ? t("lastUpdated", {value: formatRelativeValue(lastUpdatedAt)}) : t("waitingFirstRefresh")}
+          </div>
+          <div className="text-xs text-[var(--rp-ink-soft)]">
+            {lastUpdatedAt ? t("lastUpdated", {value: formatRelativeValue(lastUpdatedAt)}) : t("waitingFirstRefresh")}
+          </div>
         </div>
       </div>
+      <div className="rounded-2xl border border-[var(--rp-primary)]/25 bg-gradient-to-br from-[var(--rp-bg)]/95 via-[var(--rp-card)] to-[var(--rp-bg)]/95 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--rp-ink-soft)]">
+              {t("proximity.title")}
+            </span>
+            <span className="rounded-full border border-[var(--rp-primary)]/40 bg-[var(--rp-primary)]/15 px-2.5 py-1 text-xs font-semibold text-[var(--rp-primary)] shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
+              {t("proximity.valueBadge", {value: proximityRadiusM})}
+            </span>
+          </div>
+          <div className="mb-2 flex gap-1.5 overflow-x-auto pb-1">
+            {PROXIMITY_RADIUS_PRESETS_M.map((preset) => {
+              const isActive = proximityRadiusM === preset;
+              return (
+                <button
+                  key={preset}
+                  type="button"
+                  onClick={() => handleProximityRadiusChange(preset)}
+                  className={cn(
+                    "shrink-0 rounded-full border px-2.5 py-1 text-xs font-semibold transition-all duration-200",
+                    isActive
+                      ? "border-[var(--rp-primary)] bg-[var(--rp-primary)] text-white shadow-[0_6px_16px_rgba(37,99,235,0.35)]"
+                      : "border-[var(--rp-border)] bg-[var(--rp-card)]/80 text-[var(--rp-ink-soft)] hover:border-[var(--rp-primary)]/30 hover:bg-[var(--rp-surface)]"
+                  )}
+                >
+                  {preset} m
+                </button>
+              );
+            })}
+          </div>
+          <div className="mb-2 h-1.5 w-full overflow-hidden rounded-full bg-[var(--rp-surface)]">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500 transition-all duration-200"
+              style={{width: `${proximityPercent}%`}}
+            />
+          </div>
+          <input
+            type="range"
+            min={PROXIMITY_RADIUS_MIN_M}
+            max={PROXIMITY_RADIUS_MAX_M}
+            step={25}
+            value={proximityRadiusM}
+            onChange={(event) => handleProximityRadiusChange(Number(event.target.value))}
+            className="w-full accent-[var(--rp-primary)]"
+            aria-label={t("proximity.title")}
+          />
+          <div className="mt-1 flex items-center justify-between text-[10px] text-[var(--rp-ink-soft)]">
+            <span>{PROXIMITY_RADIUS_MIN_M} m</span>
+            <span>{PROXIMITY_RADIUS_MAX_M} m</span>
+          </div>
+          <p className="mt-1.5 text-[11px] text-[var(--rp-ink-soft)]">{t("proximity.helper")}</p>
+      </div>
       {geoError ? <p className="text-xs text-amber-700">{geoError}</p> : null}
-      <p className="text-xs text-[var(--rp-ink-soft)]">
-        {t("proximity.radius", {value: proximityRadiusM})}
-      </p>
-      <input
-        type="range"
-        min={150}
-        max={500}
-        step={25}
-        value={proximityRadiusM}
-        onChange={(event) => setProximityRadiusM(Number(event.target.value))}
-        className="w-full accent-[var(--rp-primary)]"
-      />
       {lastProximityInfo ? <p className="text-xs text-rose-700">{lastProximityInfo}</p> : null}
       {pushInfo ? <p className="text-xs text-[var(--rp-ink-soft)]">{pushInfo}</p> : null}
       {formSuccess ? <p className="text-xs text-emerald-700">{formSuccess}</p> : null}
@@ -1069,6 +1121,19 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
               <Marker position={userLocation} icon={createUserLocationIcon()}>
                 <Popup>{t("geolocation.you")}</Popup>
               </Marker>
+            ) : null}
+            {showProximityRadiusPreview && liveTrackingEnabled && userLocation ? (
+              <Circle
+                center={userLocation}
+                radius={proximityRadiusM}
+                pathOptions={{
+                  color: "#2563EB",
+                  weight: 2,
+                  opacity: 0.8,
+                  fillColor: "#60A5FA",
+                  fillOpacity: 0.15,
+                }}
+              />
             ) : null}
           </MapContainer>
 

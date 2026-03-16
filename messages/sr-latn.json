@@ -246,11 +246,13 @@
       "off": "Zvuk iskljucen"
     },
     "proximity": {
-      "trackingOn": "Tracking ukljucen",
-      "trackingOff": "Tracking iskljucen",
-      "radius": "Proximity radius: {value}m",
+      "trackingOn": "Pracenje ukljuceno",
+      "trackingOff": "Pracenje iskljuceno",
+      "title": "Radijus upozorenja",
+      "valueBadge": "{value} m",
+      "helper": "Izaberi preset ili podesi klizacem (100-1500 m).",
       "notificationTitle": "Upozorenje - {distance}m",
-      "lastAlert": "Proximity alert: {type} na {distance}m"
+      "lastAlert": "Upozorenje blizine: {type} na {distance}m"
     },
     "geolocation": {
       "cta": "Pronadji me",

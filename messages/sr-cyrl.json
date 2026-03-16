@@ -246,11 +246,13 @@
       "off": "Звук искључен"
     },
     "proximity": {
-      "trackingOn": "Tracking укључен",
-      "trackingOff": "Tracking искључен",
-      "radius": "Proximity radius: {value}m",
+      "trackingOn": "Праћење укључено",
+      "trackingOff": "Праћење искључено",
+      "title": "Радијус упозорења",
+      "valueBadge": "{value} m",
+      "helper": "Изабери preset или подеси клизачем (100-1500 m).",
       "notificationTitle": "Упозорење - {distance}m",
-      "lastAlert": "Proximity alert: {type} на {distance}m"
+      "lastAlert": "Упозорење близине: {type} на {distance}m"
     },
     "geolocation": {
       "cta": "Пронађи ме",
