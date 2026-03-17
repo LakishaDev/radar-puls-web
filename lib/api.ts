@@ -6,7 +6,16 @@ export type MapEventType =
   | "traffic_jam"
   | "unknown";
 
-export type GeoSource = "fallback" | "cache" | "google" | "google_partial" | "nominatim" | "demo" | null;
+export type GeoSource =
+  | "fallback"
+  | "cache"
+  | "google"
+  | "google_partial"
+  | "nominatim"
+  | "admin"
+  | "admin_confirmed"
+  | "demo"
+  | null;
 
 export interface MapReport {
   id: string;
@@ -34,6 +43,8 @@ function toGeoSource(value: unknown): GeoSource {
     normalized === "google" ||
     normalized === "google_partial" ||
     normalized === "nominatim" ||
+    normalized === "admin" ||
+    normalized === "admin_confirmed" ||
     normalized === "demo"
   ) {
     return normalized;

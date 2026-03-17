@@ -48,3 +48,39 @@ export async function POST(request: NextRequest, {params}: {params: Params}) {
     headers: {"Content-Type": res.headers.get("Content-Type") ?? "application/json"},
   });
 }
+
+export async function PATCH(request: NextRequest, {params}: {params: Params}) {
+  const {path} = await params;
+  const backendUrl = `${BACKEND}/api/${path.join("/")}`;
+
+  const body = await request.text();
+  const res = await fetch(backendUrl, {
+    method: "PATCH",
+    headers: buildProxyHeaders(request),
+    body,
+    signal: request.signal,
+  });
+
+  const resBody = await res.text();
+  return new NextResponse(resBody, {
+    status: res.status,
+    headers: {"Content-Type": res.headers.get("Content-Type") ?? "application/json"},
+  });
+}
+
+export async function DELETE(request: NextRequest, {params}: {params: Params}) {
+  const {path} = await params;
+  const backendUrl = `${BACKEND}/api/${path.join("/")}`;
+
+  const res = await fetch(backendUrl, {
+    method: "DELETE",
+    headers: buildProxyHeaders(request),
+    signal: request.signal,
+  });
+
+  const resBody = await res.text();
+  return new NextResponse(resBody, {
+    status: res.status,
+    headers: {"Content-Type": res.headers.get("Content-Type") ?? "application/json"},
+  });
+}

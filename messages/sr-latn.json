@@ -210,6 +210,8 @@
         "cache": "Potvrdjena lokacija",
         "google": "Google Maps",
         "google_partial": "Priblizna lokacija",
+        "admin": "Admin postavio",
+        "admin_confirmed": "Admin potvrdio",
         "nominatim": "OpenStreetMap",
         "demo": "Demo lokacija"
       }
@@ -268,7 +270,8 @@
   "admin": {
     "common": {
       "checkingSession": "Provera admin sesije...",
-      "ago": "pre {value}"
+      "ago": "pre {value}",
+      "refresh": "Osvezi"
     },
     "errors": {
       "failedToLoad": "Neuspesno ucitavanje podataka sa admin API-ja.",
@@ -281,7 +284,8 @@
     "sidebar": {
       "title": "Radar Puls Admin",
       "dashboard": "Dashboard",
-      "events": "Events"
+      "events": "Events",
+      "geocodingCache": "Kes geokodiranja"
     },
     "login": {
       "title": "Admin prijava",
@@ -302,16 +306,58 @@
         "totalEvents": "Ukupno eventa",
         "pendingReview": "Ceka review",
         "approved": "Odobreno",
-        "rejected": "Odbijeno"
+        "rejected": "Odbijeno",
+        "aiParsed": "AI parsirano"
       }
+    },
+    "stats": {
+      "adminEdited": "Admin izmenio",
+      "adminConfirmed": "Admin potvrdio",
+      "adminGeo": "Admin geokodiranje"
+    },
+    "filters": {
+      "editSource": "Izvor podataka",
+      "enrichStatus": "Status obogacivanja",
+      "all": "Svi"
     },
     "events": {
       "title": "Events",
       "subtitle": "Live moderation lista iz /api/admin/events.",
       "empty": "Nema eventa.",
+      "viewMode": {
+        "table": "Tabela",
+        "map": "Mapa"
+      },
+      "bulk": {
+        "selected": "Selektovano: {count}",
+        "selectAllVisible": "Selektuj sve vidljive",
+        "selectOne": "Selektuj red",
+        "clearSelection": "Ocisti",
+        "rejectNotePlaceholder": "Opciona napomena za odbijanje",
+        "actions": {
+          "approve": "Bulk odobri",
+          "confirm": "Bulk potvrdi lokaciju",
+          "reject": "Bulk odbij"
+        },
+        "feedback": {
+          "approveSuccess": "Odobreno dogadjaja: {count}.",
+          "rejectSuccess": "Odbijeno dogadjaja: {count}.",
+          "confirmSuccess": "Lokacija potvrdjena za {confirmed}, kesirano {cached}."
+        },
+        "candidates": {
+          "title": "Kandidati",
+          "subtitle": "Predlozene grupe lokacija za brzo bulk potvrdjivanje.",
+          "empty": "Trenutno nema kandidata.",
+          "select": "Dodaj u selekciju",
+          "confirm": "Potvrdi grupu"
+        }
+      },
       "columns": {
         "type": "Tip",
         "location": "Lokacija",
+        "coordinates": "Koordinate",
+        "editSource": "Izvor podataka",
+        "geoSource": "Geo source",
         "rawMessage": "Raw poruka",
         "status": "Status",
         "parse": "Parse",
@@ -327,9 +373,57 @@
       "fields": {
         "type": "Tip",
         "location": "Lokacija",
+        "latitude": "Geografska sirina",
+        "longitude": "Geografska duzina",
+        "coordinates": "Koordinate",
+        "editSource": "Izvor podataka",
+        "enrichStatus": "Status obogacivanja",
+        "senderName": "Posiljalac",
+        "description": "Opis",
+        "eventTime": "Vreme dogadjaja",
+        "expiresAt": "Istice",
         "geoSource": "Geo source",
         "confidence": "Confidence",
         "status": "Moderation status"
+      },
+      "location": {
+        "title": "Lokacija i mapa",
+        "openGoogleMaps": "Otvori u Google Maps",
+        "confirmLocation": "Potvrdi lokaciju",
+        "editCoordinates": "Izmeni koordinate",
+        "noCoordinates": "Lokacija nije geocodirana",
+        "confirmSuccess": "Lokacija uspesno potvrdjena i kesirana",
+        "confirmFailed": "Greska pri potvrdjivanju lokacije"
+      },
+      "confirmDialog": {
+        "title": "Potvrdite lokaciju",
+        "location": "Lokacija",
+        "coordinates": "Koordinate",
+        "openMaps": "Otvori u Google Maps",
+        "warning": "Ove koordinate ce biti sacuvane kao verifikovani fallback. Svi buduci eventi sa tekstom lokacije \"{location}\" ce automatski koristiti ove koordinate.",
+        "confirm": "Potvrdi lokaciju",
+        "cancel": "Otkazi"
+      },
+      "timeline": {
+        "title": "Istorija izmena",
+        "empty": "Nema zabelezenih izmena."
+      },
+      "shortcuts": {
+        "confirmLocation": "Potvrdi lokaciju",
+        "cancel": "Otkazi"
+      },
+      "editSource": {
+        "ai_raw": "AI parsiranje",
+        "admin_edited": "Admin izmenio",
+        "admin_confirmed": "Admin potvrdio lokaciju",
+        "web_submitted": "Web prijava"
+      },
+      "editing": {
+        "save": "Sacuvaj",
+        "cancel": "Otkazi",
+        "saveSuccess": "Uspesno sacuvano",
+        "saveFailed": "Greska pri cuvanju",
+        "shortcutHint": "Enter ili Ctrl+S za cuvanje, Esc za otkazivanje, Tab/Shift+Tab za prelaz izmedju polja"
       },
       "actions": {
         "title": "Moderation akcije",
@@ -338,6 +432,36 @@
         "rejectNote": "Napomena za odbijanje",
         "rejectPlaceholder": "Opciona napomena vidljiva u moderation log-u"
       }
+    },
+    "geocodingCache": {
+      "title": "Kes geokodiranja",
+      "subtitle": "Kesirane lokacije iz Google Geocoding API-ja.",
+      "search": "Pretrazi lokaciju",
+      "columns": {
+        "location": "Lokacija",
+        "coordinates": "Koordinate",
+        "hits": "Pogodci",
+        "type": "Tip",
+        "verified": "Verifikovan",
+        "actions": "Akcije"
+      },
+      "delete": {
+        "confirm": "Da li ste sigurni da zelite da obrisete ovaj kes unos?",
+        "success": "Kes unos uspesno obrisan.",
+        "failed": "Greska pri brisanju kes unosa."
+      },
+      "edit": {
+        "success": "Kes unos uspesno azuriran.",
+        "failed": "Greska pri azuriranju kes unosa."
+      }
+    },
+    "realtime": {
+      "connected": "Uzivo",
+      "disconnected": "Offline"
+    },
+    "theme": {
+      "switchToLight": "Prebaci na svetlu temu",
+      "switchToDark": "Prebaci na tamnu temu"
     }
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import {LayoutDashboard, ListTree, ShieldCheck} from "lucide-react";
+import {LayoutDashboard, ListTree, MapPin, ShieldCheck} from "lucide-react";
 import {useTranslations} from "next-intl";
 import {Link, usePathname} from "@/i18n/navigation";
 import {cn} from "@/lib/utils";
@@ -8,6 +8,7 @@ import {cn} from "@/lib/utils";
 const items = [
   {href: "/admin", key: "sidebar.dashboard", icon: LayoutDashboard},
   {href: "/admin/events", key: "sidebar.events", icon: ListTree},
+  {href: "/admin/geocoding-cache", key: "sidebar.geocodingCache", icon: MapPin},
 ];
 
 export function AdminSidebar() {
@@ -15,10 +16,10 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex w-full flex-col border-b border-slate-800 bg-slate-950 px-3 py-3 md:w-64 md:border-b-0 md:border-r md:px-4 md:py-4">
+    <aside className="flex w-full flex-col border-b border-[var(--rp-border)] bg-[var(--rp-bg)] px-3 py-3 md:w-64 md:border-b-0 md:border-r md:px-4 md:py-4">
       <div className="mb-4 flex items-center gap-2 px-2">
-        <ShieldCheck className="h-4 w-4 text-cyan-400" />
-        <p className="text-sm font-semibold tracking-wide text-slate-100">{t("sidebar.title")}</p>
+        <ShieldCheck className="h-4 w-4 text-[var(--rp-primary)]" />
+        <p className="text-sm font-semibold tracking-wide text-[var(--rp-deep)]">{t("sidebar.title")}</p>
       </div>
       <nav className="flex flex-row gap-2 md:flex-col">
         {items.map((item) => {
@@ -31,8 +32,8 @@ export function AdminSidebar() {
               className={cn(
                 "inline-flex items-center gap-2 rounded-md px-2.5 py-2 text-sm transition-colors",
                 active
-                  ? "bg-cyan-500/15 text-cyan-300"
-                  : "text-slate-300 hover:bg-slate-900 hover:text-slate-100"
+                  ? "bg-[var(--rp-surface)] text-[var(--rp-primary)]"
+                  : "text-[var(--rp-ink)] hover:bg-[var(--rp-card)] hover:text-[var(--rp-deep)]"
               )}
             >
               <Icon className="h-4 w-4" />

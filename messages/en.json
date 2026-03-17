@@ -210,6 +210,8 @@
         "cache": "Verified location",
         "google": "Google Maps",
         "google_partial": "Approximate location",
+        "admin": "Admin set",
+        "admin_confirmed": "Admin confirmed",
         "nominatim": "OpenStreetMap",
         "demo": "Demo location"
       }
@@ -268,7 +270,8 @@
   "admin": {
     "common": {
       "checkingSession": "Checking admin session...",
-      "ago": "{value} ago"
+      "ago": "{value} ago",
+      "refresh": "Refresh"
     },
     "errors": {
       "failedToLoad": "Unable to load data from admin API.",
@@ -281,7 +284,8 @@
     "sidebar": {
       "title": "Radar Puls Admin",
       "dashboard": "Dashboard",
-      "events": "Events"
+      "events": "Events",
+      "geocodingCache": "Geocoding Cache"
     },
     "login": {
       "title": "Admin login",
@@ -302,16 +306,58 @@
         "totalEvents": "Total events",
         "pendingReview": "Pending review",
         "approved": "Approved",
-        "rejected": "Rejected"
+        "rejected": "Rejected",
+        "aiParsed": "AI parsed"
       }
+    },
+    "stats": {
+      "adminEdited": "Admin edited",
+      "adminConfirmed": "Admin confirmed",
+      "adminGeo": "Admin geo"
+    },
+    "filters": {
+      "editSource": "Data source",
+      "enrichStatus": "Enrichment status",
+      "all": "All"
     },
     "events": {
       "title": "Events",
       "subtitle": "Live moderation list from /api/admin/events.",
       "empty": "No events found.",
+      "viewMode": {
+        "table": "Table",
+        "map": "Map"
+      },
+      "bulk": {
+        "selected": "Selected: {count}",
+        "selectAllVisible": "Select all visible",
+        "selectOne": "Select row",
+        "clearSelection": "Clear",
+        "rejectNotePlaceholder": "Optional reject note",
+        "actions": {
+          "approve": "Bulk approve",
+          "confirm": "Bulk confirm location",
+          "reject": "Bulk reject"
+        },
+        "feedback": {
+          "approveSuccess": "Approved {count} events.",
+          "rejectSuccess": "Rejected {count} events.",
+          "confirmSuccess": "Location confirmed for {confirmed}, cached {cached}."
+        },
+        "candidates": {
+          "title": "Candidates",
+          "subtitle": "Suggested location groups for quick bulk confirmation.",
+          "empty": "No candidates available right now.",
+          "select": "Add to selection",
+          "confirm": "Confirm group"
+        }
+      },
       "columns": {
         "type": "Type",
         "location": "Location",
+        "coordinates": "Coordinates",
+        "editSource": "Data source",
+        "geoSource": "Geo source",
         "rawMessage": "Raw message",
         "status": "Status",
         "parse": "Parse",
@@ -327,9 +373,57 @@
       "fields": {
         "type": "Type",
         "location": "Location",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "coordinates": "Coordinates",
+        "editSource": "Data source",
+        "enrichStatus": "Enrichment status",
+        "senderName": "Sender",
+        "description": "Description",
+        "eventTime": "Event time",
+        "expiresAt": "Expires at",
         "geoSource": "Geocoding source",
         "confidence": "Confidence",
         "status": "Moderation status"
+      },
+      "location": {
+        "title": "Location and map",
+        "openGoogleMaps": "Open in Google Maps",
+        "confirmLocation": "Confirm location",
+        "editCoordinates": "Edit coordinates",
+        "noCoordinates": "Location is not geocoded",
+        "confirmSuccess": "Location confirmed and cached successfully",
+        "confirmFailed": "Location confirmation failed"
+      },
+      "confirmDialog": {
+        "title": "Confirm location",
+        "location": "Location",
+        "coordinates": "Coordinates",
+        "openMaps": "Open in Google Maps",
+        "warning": "These coordinates will be saved as a verified fallback. Future events with location text \"{location}\" will automatically use these coordinates.",
+        "confirm": "Confirm location",
+        "cancel": "Cancel"
+      },
+      "timeline": {
+        "title": "Change history",
+        "empty": "No changes recorded."
+      },
+      "shortcuts": {
+        "confirmLocation": "Confirm location",
+        "cancel": "Cancel"
+      },
+      "editSource": {
+        "ai_raw": "AI parsed",
+        "admin_edited": "Admin edited",
+        "admin_confirmed": "Admin confirmed",
+        "web_submitted": "Web submitted"
+      },
+      "editing": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "saveSuccess": "Saved successfully",
+        "saveFailed": "Failed to save",
+        "shortcutHint": "Enter or Ctrl+S to save, Esc to cancel, Tab/Shift+Tab to switch fields"
       },
       "actions": {
         "title": "Moderation actions",
@@ -338,6 +432,36 @@
         "rejectNote": "Reject note",
         "rejectPlaceholder": "Optional note visible in moderation logs"
       }
+    },
+    "geocodingCache": {
+      "title": "Geocoding Cache",
+      "subtitle": "Cached locations from Google Geocoding API.",
+      "search": "Search location",
+      "columns": {
+        "location": "Location",
+        "coordinates": "Coordinates",
+        "hits": "Hits",
+        "type": "Type",
+        "verified": "Verified",
+        "actions": "Actions"
+      },
+      "delete": {
+        "confirm": "Are you sure you want to delete this cache entry?",
+        "success": "Cache entry deleted successfully.",
+        "failed": "Failed to delete cache entry."
+      },
+      "edit": {
+        "success": "Cache entry updated successfully.",
+        "failed": "Failed to update cache entry."
+      }
+    },
+    "realtime": {
+      "connected": "Live",
+      "disconnected": "Offline"
+    },
+    "theme": {
+      "switchToLight": "Switch to light mode",
+      "switchToDark": "Switch to dark mode"
     }
   }
 }

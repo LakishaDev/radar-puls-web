@@ -1,6 +1,7 @@
 "use client";
 
 import {useEffect, useMemo, useRef, useState} from "react";
+import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {io} from "socket.io-client";
 import "leaflet/dist/leaflet.css";
@@ -36,15 +37,6 @@ L.Icon.Default.mergeOptions({
 });
 
 const ALL_TYPES: MapEventType[] = ["police", "radar", "checkpoint", "accident", "traffic_jam", "unknown"];
-
-const markerConfig: Record<MapEventType, {bg: string; border: string; emoji: string}> = {
-  police: {bg: "#DC2626", border: "#FCA5A5", emoji: "👮"},
-  radar: {bg: "#D97706", border: "#FCD34D", emoji: "📡"},
-  checkpoint: {bg: "#2563EB", border: "#93C5FD", emoji: "🚧"},
-  accident: {bg: "#7C3AED", border: "#C4B5FD", emoji: "💥"},
-  traffic_jam: {bg: "#059669", border: "#6EE7B7", emoji: "🚗"},
-  unknown: {bg: "#6B7280", border: "#D1D5DB", emoji: "❓"},
-};
 
 const markerSvgMap: Record<MapEventType, string> = {
   police: "/images/markers/police.svg",
@@ -1054,10 +1046,13 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
                     <Popup>
                       <div className="min-w-[200px] text-sm">
                         <div className="flex items-center gap-1.5 font-semibold text-slate-800">
-                          <img
+                          <Image
                             src={markerSvgMap[report.eventType]}
                             alt={report.eventType}
+                            width={16}
+                            height={16}
                             className="h-4 w-4"
+                            unoptimized
                           />
                           <span>{t(markerLabelKey[report.eventType])}</span>
                         </div>
@@ -1179,10 +1174,13 @@ export default function MapClient({heightClassName = "h-[480px]", showDisclaimer
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-xs font-semibold text-[var(--rp-deep)]">
-                    <img
+                    <Image
                       src={markerSvgMap[report.eventType]}
                       alt={report.eventType}
+                      width={14}
+                      height={14}
                       className="mr-1 inline h-3.5 w-3.5"
+                      unoptimized
                     />
                     {t(markerLabelKey[report.eventType])}
                   </span>

@@ -210,6 +210,8 @@
         "cache": "Потврђена локација",
         "google": "Google Maps",
         "google_partial": "Приближна локација",
+        "admin": "Админ поставио",
+        "admin_confirmed": "Админ потврдио",
         "nominatim": "OpenStreetMap",
         "demo": "Demo локација"
       }
@@ -268,7 +270,8 @@
   "admin": {
     "common": {
       "checkingSession": "Провера admin сесије...",
-      "ago": "пре {value}"
+      "ago": "пре {value}",
+      "refresh": "Освежи"
     },
     "errors": {
       "failedToLoad": "Неуспешно учитавање података са admin API-ја.",
@@ -281,7 +284,8 @@
     "sidebar": {
       "title": "Радар Пулс Админ",
       "dashboard": "Контролна табла",
-      "events": "Догађаји"
+      "events": "Догађаји",
+      "geocodingCache": "Геокодирање кеш"
     },
     "login": {
       "title": "Admin пријава",
@@ -302,16 +306,58 @@
         "totalEvents": "Укупно догађаја",
         "pendingReview": "Чека review",
         "approved": "Одобрено",
-        "rejected": "Одбијено"
+        "rejected": "Одбијено",
+        "aiParsed": "AI парсирано"
       }
+    },
+    "stats": {
+      "adminEdited": "Админ изменио",
+      "adminConfirmed": "Админ потврдио",
+      "adminGeo": "Админ геокодирање"
+    },
+    "filters": {
+      "editSource": "Извор података",
+      "enrichStatus": "Статус обогаћивања",
+      "all": "Сви"
     },
     "events": {
       "title": "Догађаји",
       "subtitle": "Live moderation листа из /api/admin/events.",
       "empty": "Нема догађаја.",
+      "viewMode": {
+        "table": "Табела",
+        "map": "Мапа"
+      },
+      "bulk": {
+        "selected": "Селекција: {count}",
+        "selectAllVisible": "Изабери све видљиве",
+        "selectOne": "Изабери ред",
+        "clearSelection": "Очисти",
+        "rejectNotePlaceholder": "Опциона напомена за одбијање",
+        "actions": {
+          "approve": "Bulk одобри",
+          "confirm": "Bulk потврди локацију",
+          "reject": "Bulk одбиј"
+        },
+        "feedback": {
+          "approveSuccess": "Одобрено догађаја: {count}.",
+          "rejectSuccess": "Одбијено догађаја: {count}.",
+          "confirmSuccess": "Локација потврђена за {confirmed}, кеширано {cached}."
+        },
+        "candidates": {
+          "title": "Кандидати",
+          "subtitle": "Предложене групе локација за брзо bulk потврђивање.",
+          "empty": "Тренутно нема кандидата.",
+          "select": "Додај у селекцију",
+          "confirm": "Потврди групу"
+        }
+      },
       "columns": {
         "type": "Тип",
         "location": "Локација",
+        "coordinates": "Координате",
+        "editSource": "Извор података",
+        "geoSource": "Geo source",
         "rawMessage": "Raw порука",
         "status": "Статус",
         "parse": "Parse",
@@ -327,9 +373,57 @@
       "fields": {
         "type": "Тип",
         "location": "Локација",
+        "latitude": "Географска ширина",
+        "longitude": "Географска дужина",
+        "coordinates": "Координате",
+        "editSource": "Извор података",
+        "enrichStatus": "Статус обогаћивања",
+        "senderName": "Пошиљалац",
+        "description": "Опис",
+        "eventTime": "Време догађаја",
+        "expiresAt": "Истиче",
         "geoSource": "Geo source",
         "confidence": "Confidence",
         "status": "Moderation status"
+      },
+      "location": {
+        "title": "Локација и мапа",
+        "openGoogleMaps": "Отвори у Google Maps",
+        "confirmLocation": "Потврди локацију",
+        "editCoordinates": "Измени координате",
+        "noCoordinates": "Локација није геокодирана",
+        "confirmSuccess": "Локација успешно потврђена и кеширана",
+        "confirmFailed": "Грешка при потврђивању локације"
+      },
+      "confirmDialog": {
+        "title": "Потврдите локацију",
+        "location": "Локација",
+        "coordinates": "Координате",
+        "openMaps": "Отвори у Google Maps",
+        "warning": "Ове координате ће бити сачуване као верификовани fallback. Сви будући догађаји са текстом локације \"{location}\" ће аутоматски користити ове координате.",
+        "confirm": "Потврди локацију",
+        "cancel": "Откажи"
+      },
+      "timeline": {
+        "title": "Историја измена",
+        "empty": "Нема забележених измена."
+      },
+      "shortcuts": {
+        "confirmLocation": "Потврди локацију",
+        "cancel": "Откажи"
+      },
+      "editSource": {
+        "ai_raw": "AI парсирање",
+        "admin_edited": "Админ изменио",
+        "admin_confirmed": "Админ потврдио локацију",
+        "web_submitted": "Web пријава"
+      },
+      "editing": {
+        "save": "Сачувај",
+        "cancel": "Откажи",
+        "saveSuccess": "Успешно сачувано",
+        "saveFailed": "Грешка при чувању",
+        "shortcutHint": "Enter или Ctrl+S за чување, Esc за отказивање, Tab/Shift+Tab за прелаз између поља"
       },
       "actions": {
         "title": "Moderation акције",
@@ -338,6 +432,36 @@
         "rejectNote": "Напомена за одбијање",
         "rejectPlaceholder": "Опциона напомена видљива у moderation лог-у"
       }
+    },
+    "geocodingCache": {
+      "title": "Геокодирање кеш",
+      "subtitle": "Кеширане локације из Google Geocoding API-ја.",
+      "search": "Претражи локацију",
+      "columns": {
+        "location": "Локација",
+        "coordinates": "Координате",
+        "hits": "Погоци",
+        "type": "Тип",
+        "verified": "Верификован",
+        "actions": "Акције"
+      },
+      "delete": {
+        "confirm": "Да ли сте сигурни да желите да обришете овај кеш унос?",
+        "success": "Кеш унос успешно обрисан.",
+        "failed": "Грешка при брисању кеш уноса."
+      },
+      "edit": {
+        "success": "Кеш унос успешно ажуриран.",
+        "failed": "Грешка при ажурирању кеш уноса."
+      }
+    },
+    "realtime": {
+      "connected": "Уживо",
+      "disconnected": "Offline"
+    },
+    "theme": {
+      "switchToLight": "Пребаци на светлу тему",
+      "switchToDark": "Пребаци на тамну тему"
     }
   }
 }
