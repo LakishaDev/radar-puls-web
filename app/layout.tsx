@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   },
   description: "Radar Puls landing iskustvo za zajednicu vozaca.",
   manifest: "/manifest.json",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
+  },
 };
 
 export default function RootLayout({
@@ -31,9 +34,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sr-Latn-RS" suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
+        {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN && (
+          <script
+            defer
+            data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
+            src="https://plausible.io/js/script.js"
+          />
+        )}
         <script
           dangerouslySetInnerHTML={{
             __html:

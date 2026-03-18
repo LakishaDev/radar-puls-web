@@ -1,14 +1,47 @@
 import type {Metadata} from "next";
 import {getTranslations} from "next-intl/server";
+import {appConfig} from "@/lib/config";
 import {FullMap} from "@/components/map/full-map";
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
   const {locale} = await params;
   const t = await getTranslations({locale, namespace: "mapPage"});
+  const siteUrl = appConfig.siteUrl;
+  const pageUrl = `${siteUrl}/${locale}/mapa`;
 
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: pageUrl,
+      languages: {
+        "sr-latn": `${siteUrl}/sr-latn/mapa`,
+        "sr-cyrl": `${siteUrl}/sr-cyrl/mapa`,
+        en: `${siteUrl}/en/mapa`,
+      },
+    },
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      url: pageUrl,
+      siteName: appConfig.siteName,
+      images: [
+        {
+          url: `${siteUrl}/images/brand/og-default.png`,
+          width: 1200,
+          height: 630,
+          alt: appConfig.siteName,
+        },
+      ],
+      locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: [`${siteUrl}/images/brand/og-default.png`],
+    },
   };
 }
 

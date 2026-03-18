@@ -42,7 +42,7 @@ export async function generateMetadata({
       siteName: "Radar Puls",
       images: [
         {
-          url: `${siteUrl}/images/brand/og-placeholder.svg`,
+          url: `${siteUrl}/images/brand/og-default.png`,
           width: 1200,
           height: 630,
           alt: "Radar Puls",
@@ -55,7 +55,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: [`${siteUrl}/images/brand/og-placeholder.svg`],
+      images: [`${siteUrl}/images/brand/og-default.png`],
     },
   };
 }
@@ -101,7 +101,7 @@ export default async function LocaleLayout({
       "@type": "LocalBusiness",
       name: appConfig.siteName,
       url: localeUrl,
-      image: `${appConfig.siteUrl}/images/brand/og-placeholder.svg`,
+      image: `${appConfig.siteUrl}/images/brand/og-default.png`,
       address: {
         "@type": "PostalAddress",
         addressLocality: appConfig.business.addressLocality,
@@ -110,6 +110,20 @@ export default async function LocaleLayout({
       },
       areaServed: appConfig.business.city,
       sameAs: [appConfig.googlePlayUrl, appConfig.appStoreUrl],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: appConfig.siteName,
+      url: appConfig.siteUrl,
+      logo: `${appConfig.siteUrl}/images/brand/og-default.png`,
+      sameAs: [
+        appConfig.social.instagram,
+        appConfig.social.facebook,
+        appConfig.social.youtube,
+        appConfig.googlePlayUrl,
+        appConfig.appStoreUrl,
+      ],
     },
   ];
 

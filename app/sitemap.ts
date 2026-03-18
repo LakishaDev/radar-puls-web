@@ -30,6 +30,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const statistikaPages = routing.locales.map((locale) => ({
+    url: `${appConfig.siteUrl}/${locale}/statistika`,
+    lastModified: now,
+    changeFrequency: "daily" as const,
+    priority: 0.7,
+  }));
+
   const seoPages = routing.locales.flatMap((locale) =>
     futureSeoPages.map((page) => ({
       url: `${appConfig.siteUrl}/${locale}/${page.slug}`,
@@ -39,5 +46,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  return [...localePages, ...mapaPages, ...legalPages, ...seoPages];
+  return [...localePages, ...mapaPages, ...statistikaPages, ...legalPages, ...seoPages];
 }

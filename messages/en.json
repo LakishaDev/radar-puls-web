@@ -463,5 +463,67 @@
       "switchToLight": "Switch to light mode",
       "switchToDark": "Switch to dark mode"
     }
+  },
+  "seoPages": {
+    "radarNis": {
+      "title": "Radar Nis today | Radar Puls",
+      "description": "Latest radar and police reports in Nis in one place.",
+      "heading": "Speed radar in Nis today",
+      "intro": "Check the latest speed radar and police checkpoint reports in Nis before hitting the road. The Radar Puls community shares real-time traffic control information, radar locations, and local reports.",
+      "benefitsTitle": "What you get with Radar Puls",
+      "benefit1": "Traffic control and radar reports in one place.",
+      "benefit2": "Quick situation check before you drive.",
+      "benefit3": "A driver community focused on Nis and surrounding area.",
+      "benefit4": "Notifications about new reports in your area.",
+      "ctaText": "View live map"
+    },
+    "gdeRadari": {
+      "title": "Where are radars in Nis | Radar Puls",
+      "description": "Overview of radar and checkpoint reports from the field for Nis and surrounding area.",
+      "heading": "Where are speed radars in Nis",
+      "intro": "Find out where active speed radars are located in Nis and nearby areas thanks to community reports. Radar Puls collects information from drivers on the ground and displays them on an interactive map.",
+      "benefitsTitle": "What you get with Radar Puls",
+      "benefit1": "Radar report overview with map locations.",
+      "benefit2": "Info about fixed and mobile speed cameras.",
+      "benefit3": "Community confirmations of reports.",
+      "benefit4": "History of locations where radars are most common.",
+      "ctaText": "View live map"
+    },
+    "policija": {
+      "title": "Police Nis today | Radar Puls",
+      "description": "Track police location reports and traffic checkpoints in real time.",
+      "heading": "Police in Nis today",
+      "intro": "Stay informed about police patrol and traffic checkpoint reports in Nis. The Radar Puls community reports police locations in real time so drivers can stay informed.",
+      "benefitsTitle": "What you get with Radar Puls",
+      "benefit1": "Police checkpoint reports from the driver community.",
+      "benefit2": "Real-time information about active patrols.",
+      "benefit3": "Filters by report type and time window.",
+      "benefit4": "Push notifications for your region.",
+      "ctaText": "View live map"
+    },
+    "kamere": {
+      "title": "Traffic cameras Nis | Radar Puls",
+      "description": "Information about cameras and critical road points around Nis.",
+      "heading": "Traffic cameras in Nis",
+      "intro": "Check reported camera locations and critical points in Nis and the surrounding area. The Radar Puls community identifies and shares information about speed camera locations.",
+      "benefitsTitle": "What you get with Radar Puls",
+      "benefit1": "Reported camera locations on the map.",
+      "benefit2": "Info about critical road points.",
+      "benefit3": "Community confirmations of report accuracy.",
+      "benefit4": "Regularly updated information from drivers.",
+      "ctaText": "View live map"
+    },
+    "kontrole": {
+      "title": "Checkpoints Nis | Radar Puls",
+      "description": "Community reports of traffic checkpoints and patrols in your city.",
+      "heading": "Traffic checkpoints in Nis",
+      "intro": "Stay informed about traffic checkpoints in Nis thanks to the driver community. Radar Puls displays reports of checkpoints, patrols, and DUI tests from the field.",
+      "benefitsTitle": "What you get with Radar Puls",
+      "benefit1": "Reports of different checkpoint types in your city.",
+      "benefit2": "Filters by checkpoint type and distance.",
+      "benefit3": "Confirmed reports with higher trust level.",
+      "benefit4": "Statistics of most active locations.",
+      "ctaText": "View live map"
+    }
   }
 }

@@ -1,34 +1,40 @@
 export type FutureSeoPage = {
   slug: string;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
+  contentKey: string;
 };
 
 export const futureSeoPages: FutureSeoPage[] = [
   {
     slug: "radar-nis",
-    title: "Radar Nis danas | Radar Puls",
-    description: "Najnovije prijave radara i policije u Nisu na jednom mestu.",
+    titleKey: "seoPages.radarNis.title",
+    descriptionKey: "seoPages.radarNis.description",
+    contentKey: "seoPages.radarNis",
   },
   {
     slug: "gde-su-radari-u-nisu",
-    title: "Gde su radari u Nisu | Radar Puls",
-    description: "Pregled prijava radara i kontrola sa terena za Nis i okolinu.",
+    titleKey: "seoPages.gdeRadari.title",
+    descriptionKey: "seoPages.gdeRadari.description",
+    contentKey: "seoPages.gdeRadari",
   },
   {
     slug: "policija-nis-danas",
-    title: "Policija Nis danas | Radar Puls",
-    description: "Prati prijave lokacija policije i saobracajnih kontrola u realnom vremenu.",
+    titleKey: "seoPages.policija.title",
+    descriptionKey: "seoPages.policija.description",
+    contentKey: "seoPages.policija",
   },
   {
     slug: "kamere-nis",
-    title: "Kamere Nis | Radar Puls",
-    description: "Informacije o kamerama i kriticnim tackama na putevima oko Nisa.",
+    titleKey: "seoPages.kamere.title",
+    descriptionKey: "seoPages.kamere.description",
+    contentKey: "seoPages.kamere",
   },
   {
     slug: "kontrole-nis",
-    title: "Kontrole Nis | Radar Puls",
-    description: "Community prijave saobracajnih kontrola i patrola u tvom gradu.",
+    titleKey: "seoPages.kontrole.title",
+    descriptionKey: "seoPages.kontrole.description",
+    contentKey: "seoPages.kontrole",
   },
 ];
 

@@ -463,5 +463,67 @@
       "switchToLight": "Prebaci na svetlu temu",
       "switchToDark": "Prebaci na tamnu temu"
     }
+  },
+  "seoPages": {
+    "radarNis": {
+      "title": "Radar Nis danas | Radar Puls",
+      "description": "Najnovije prijave radara i policije u Nisu na jednom mestu.",
+      "heading": "Radar Nis danas",
+      "intro": "Proverite najnovije prijave radara i policijskih kontrola u Nisu pre nego sto krenete na put. Radar Puls zajednica u realnom vremenu deli informacije o saobracajnim kontrolama, radarima i lokalnim prijavama.",
+      "benefitsTitle": "Sta dobijas uz Radar Puls",
+      "benefit1": "Prijave saobracajnih kontrola i radara na jednom mestu.",
+      "benefit2": "Brz pregled situacije pre nego sto krenes na put.",
+      "benefit3": "Zajednica vozaca fokusirana na Nis i okolinu.",
+      "benefit4": "Obavestavanja o novim prijavama u tvom kraju.",
+      "ctaText": "Pogledaj live mapu"
+    },
+    "gdeRadari": {
+      "title": "Gde su radari u Nisu | Radar Puls",
+      "description": "Pregled prijava radara i kontrola sa terena za Nis i okolinu.",
+      "heading": "Gde su radari u Nisu",
+      "intro": "Saznajte gde se nalaze aktivni radari u Nisu i okolini zahvaljujuci prijavama zajednice. Radar Puls prikuplja informacije od vozaca na terenu i prikazuje ih na interaktivnoj mapi.",
+      "benefitsTitle": "Sta dobijas uz Radar Puls",
+      "benefit1": "Pregled prijava radara sa lokacijama na mapi.",
+      "benefit2": "Informacije o fiksnim i mobilnim radarima.",
+      "benefit3": "Potvrde prijava od strane drugih vozaca.",
+      "benefit4": "Istorija lokacija gde su radari najcesci.",
+      "ctaText": "Pogledaj live mapu"
+    },
+    "policija": {
+      "title": "Policija Nis danas | Radar Puls",
+      "description": "Prati prijave lokacija policije i saobracajnih kontrola u realnom vremenu.",
+      "heading": "Policija Nis danas",
+      "intro": "Informisite se o prijavama policijskih patrola i saobracajnih kontrola u Nisu. Radar Puls zajednica prijavljuje lokacije policije u realnom vremenu kako bi vozaci mogli da budu obavesteni.",
+      "benefitsTitle": "Sta dobijas uz Radar Puls",
+      "benefit1": "Prijave policijskih kontrola iz zajednice vozaca.",
+      "benefit2": "Informacije u realnom vremenu o aktivnim patrolama.",
+      "benefit3": "Filteri po tipu prijave i vremenskom okviru.",
+      "benefit4": "Push obavestenja za tvoj region.",
+      "ctaText": "Pogledaj live mapu"
+    },
+    "kamere": {
+      "title": "Kamere Nis | Radar Puls",
+      "description": "Informacije o kamerama i kriticnim tackama na putevima oko Nisa.",
+      "heading": "Kamere Nis",
+      "intro": "Proverite prijavljena mesta sa kamerama i kriticnim tackama u Nisu i okolini. Radar Puls zajednica identifikuje i deli informacije o lokacijama kamera za merenje brzine.",
+      "benefitsTitle": "Sta dobijas uz Radar Puls",
+      "benefit1": "Lokacije prijavljenih kamera na mapi.",
+      "benefit2": "Informacije o kriticnim tackama na putevima.",
+      "benefit3": "Zajednicke potvrde tacnosti prijava.",
+      "benefit4": "Redovno azurirane informacije od vozaca.",
+      "ctaText": "Pogledaj live mapu"
+    },
+    "kontrole": {
+      "title": "Kontrole Nis | Radar Puls",
+      "description": "Community prijave saobracajnih kontrola i patrola u tvom gradu.",
+      "heading": "Kontrole Nis",
+      "intro": "Budite informisani o saobracajnim kontrolama u Nisu zahvaljujuci zajednici vozaca. Radar Puls prikazuje prijave kontrola, patrola i alkohol testova sa terena.",
+      "benefitsTitle": "Sta dobijas uz Radar Puls",
+      "benefit1": "Prijave razlicitih tipova kontrola u tvom gradu.",
+      "benefit2": "Filteri po tipu kontrole i distanci.",
+      "benefit3": "Potvrdene prijave sa vecim nivoom poverenja.",
+      "benefit4": "Statistika najaktivnijih lokacija.",
+      "ctaText": "Pogledaj live mapu"
+    }
   }
 }
