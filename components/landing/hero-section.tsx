@@ -2,6 +2,7 @@
 
 import {useEffect} from "react";
 import {useTranslations} from "next-intl";
+import Image from "next/image";
 import {ArrowRight, Download, MapPin} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {trackEvent} from "@/lib/analytics";
@@ -90,25 +91,20 @@ export function HeroSection() {
           <p className="mt-5 text-sm text-white/45">{t("note")}</p>
             </div>
 
-            <div className="mx-auto w-full max-w-xs">
-              <div className="relative rounded-[2rem] border border-white/20 bg-black/50 p-2 shadow-2xl shadow-black/40">
-                <div className="mx-auto mb-2 h-1.5 w-16 rounded-full bg-white/30" />
-                <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-gradient-to-b from-slate-900 to-blue-950 p-4">
-                  <div className="mb-4 flex items-center justify-between text-[10px] text-white/60">
-                    <span>Radar Puls Live</span>
-                    <span>Niš</span>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="rounded-md border border-red-300/25 bg-red-500/10 px-3 py-2 text-xs text-red-200">
-                      🚔 Policija · Obrenovićeva · pre 2 min
-                    </div>
-                    <div className="rounded-md border border-amber-300/25 bg-amber-500/10 px-3 py-2 text-xs text-amber-100">
-                      📡 Radar · Bulevar Nemanjića · pre 6 min
-                    </div>
-                    <div className="rounded-md border border-blue-300/25 bg-blue-500/10 px-3 py-2 text-xs text-blue-100">
-                      🚧 Kontrola · Medijana · pre 9 min
-                    </div>
-                  </div>
+            <div className="mx-auto w-full max-w-md">
+              <div className="relative overflow-hidden rounded-2xl border border-white/20 shadow-2xl shadow-black/40">
+                <Image
+                  src="/images/banner1.png"
+                  alt="Radar Puls banner"
+                  width={1536}
+                  height={1024}
+                  className="h-[320px] w-full object-cover"
+                  priority
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071328]/75 via-[#071328]/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4">
+                  <p className="text-xs uppercase tracking-[0.15em] text-white/75">Radar Puls Live</p>
+                  <p className="mt-1 text-sm font-medium text-white">Niš i okolina, prijave u realnom vremenu</p>
                 </div>
               </div>
             </div>

@@ -3,7 +3,7 @@ const defaultSiteUrl = "https://radarpuls.com";
 export const appConfig = {
   siteName: "Radar Puls",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? defaultSiteUrl,
-  liveMapLaunchDate: process.env.NEXT_PUBLIC_LIVE_MAP_LAUNCH_DATE ?? "2026-06-01T00:00:00+02:00",
+  liveMapLaunchDate: process.env.NEXT_PUBLIC_LIVE_MAP_LAUNCH_DATE ?? "2026-04-03T00:14:00+01:00",
   heroExperimentMode: process.env.NEXT_PUBLIC_HERO_EXPERIMENT ?? "ab",
   googlePlayUrl:
     process.env.NEXT_PUBLIC_GOOGLE_PLAY_URL ?? "https://play.google.com/store",

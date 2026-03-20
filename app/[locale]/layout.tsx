@@ -116,7 +116,7 @@ export default async function LocaleLayout({
       "@type": "Organization",
       name: appConfig.siteName,
       url: appConfig.siteUrl,
-      logo: `${appConfig.siteUrl}/images/brand/og-default.png`,
+      logo: `${appConfig.siteUrl}/images/brand/logo.svg`,
       sameAs: [
         appConfig.social.instagram,
         appConfig.social.facebook,

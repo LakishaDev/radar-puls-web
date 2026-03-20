@@ -2,6 +2,7 @@ import {useTranslations} from "next-intl";
 import {Facebook, Instagram, Youtube} from "lucide-react";
 import {Link} from "@/i18n/navigation";
 import {appConfig} from "@/lib/config";
+import {BrandLogo} from "@/components/brand/brand-logo";
 
 export function SiteFooter() {
   const t = useTranslations("footer");
@@ -11,7 +12,10 @@ export function SiteFooter() {
     <footer className="border-t border-[var(--rp-border)] bg-[var(--rp-card)]/90 backdrop-blur-sm">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
         <div>
-          <p className="text-lg font-semibold text-[var(--rp-deep)]">Radar Puls</p>
+          <BrandLogo
+            imageClassName="ring-1 ring-[var(--rp-border)]"
+            wordmarkClassName="text-[var(--rp-deep)]"
+          />
           <p className="mt-3 max-w-xs text-sm leading-6 text-[var(--rp-ink-soft)]">{t("text")}</p>
           <div className="mt-4 flex items-center gap-2">
             <a

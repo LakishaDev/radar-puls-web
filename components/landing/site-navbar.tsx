@@ -6,6 +6,7 @@ import {Menu, Moon, Sun, X} from "lucide-react";
 import {Link} from "@/i18n/navigation";
 import {LanguageSwitcher} from "@/components/navbar/language-switcher";
 import {useTheme} from "@/lib/hooks/use-theme";
+import {BrandLogo} from "@/components/brand/brand-logo";
 
 export function SiteNavbar() {
   const t = useTranslations("nav");
@@ -18,10 +19,10 @@ export function SiteNavbar() {
     <header className="sticky top-0 z-30 border-b border-white/8 bg-[#0F172A]/90 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2 group" onClick={closeMenu}>
-          <span className="h-2 w-2 rounded-full bg-blue-400 group-hover:bg-blue-300 transition-colors" />
-          <span className="text-sm font-semibold tracking-[0.15em] text-white uppercase">
-            {t("brand")}
-          </span>
+          <BrandLogo
+            imageClassName="ring-1 ring-white/20"
+            wordmarkClassName="text-white group-hover:text-white/90 transition-colors"
+          />
         </Link>
         <nav className="hidden items-center gap-7 text-[13px] font-medium text-white/60 md:flex">
           <a href="#kako-radi" className="hover:text-white transition-colors">
