@@ -108,27 +108,23 @@ export function HeroSection() {
               <p className="mt-5 text-sm text-white/45">{t("note")}</p>
             </div>
 
-            <div className="mx-auto w-full max-w-md">
-              <div className="relative overflow-hidden rounded-2xl border border-white/20 shadow-2xl shadow-black/40">
-                <div className="mx-auto w-full max-w-xs">
-                  <div className="relative rounded-[2rem] border border-white/20 bg-black/50 p-2 shadow-2xl shadow-black/40">
-                    <div className="mx-auto mb-2 h-1.5 w-16 rounded-full bg-white/30" />
-                    <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-gradient-to-b from-slate-900 to-blue-950 p-4">
-                      <div className="mb-4 flex items-center justify-between text-[10px] text-white/60">
-                        <span>Radar Puls Live</span>
-                        <span>Niš</span>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="rounded-md border border-red-300/25 bg-red-500/10 px-3 py-2 text-xs text-red-200">
-                          🚔 Policija · Obrenovićeva · pre 2 min
-                        </div>
-                        <div className="rounded-md border border-amber-300/25 bg-amber-500/10 px-3 py-2 text-xs text-amber-100">
-                          📡 Radar · Bulevar Nemanjića · pre 6 min
-                        </div>
-                        <div className="rounded-md border border-blue-300/25 bg-blue-500/10 px-3 py-2 text-xs text-blue-100">
-                          🚧 Kontrola · Medijana · pre 9 min
-                        </div>
-                      </div>
+            <div className="mx-auto w-full max-w-xs">
+              <div className="relative rounded-[2rem] border border-white/20 bg-black/50 p-2 shadow-2xl shadow-black/40">
+                <div className="mx-auto mb-2 h-1.5 w-16 rounded-full bg-white/30" />
+                <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-gradient-to-b from-slate-900 to-blue-950 p-4">
+                  <div className="mb-4 flex items-center justify-between text-[10px] text-white/60">
+                    <span>Radar Puls Live</span>
+                    <span>Niš</span>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="rounded-md border border-red-300/25 bg-red-500/10 px-3 py-2 text-xs text-red-200">
+                      🚔 Policija · Obrenovićeva · pre 2 min
+                    </div>
+                    <div className="rounded-md border border-amber-300/25 bg-amber-500/10 px-3 py-2 text-xs text-amber-100">
+                      📡 Radar · Bulevar Nemanjića · pre 6 min
+                    </div>
+                    <div className="rounded-md border border-blue-300/25 bg-blue-500/10 px-3 py-2 text-xs text-blue-100">
+                      🚧 Kontrola · Medijana · pre 9 min
                     </div>
                   </div>
                 </div>
