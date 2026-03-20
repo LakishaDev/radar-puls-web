@@ -132,15 +132,6 @@ export function HeroSection() {
                     </div>
                   </div>
                 </div>
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071328]/75 via-[#071328]/10 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-4">
-                  <p className="text-xs uppercase tracking-[0.15em] text-white/75">
-                    Radar Puls Live
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-white">
-                    Niš i okolina, prijave u realnom vremenu
-                  </p>
-                </div>
               </div>
             </div>
           </div>
